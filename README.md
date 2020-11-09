@@ -68,3 +68,161 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Moments
+
+Moments
+
+
+========
+= GOALS =
+========
+
+Moments helps the user understand the correlations between their activities and moods.
+
+Aim for simplicity and clarity in all aspects over granularity of data collected.
+
+- All aspects of the UI and data presented are simple enough to understand brainlessly
+- All pieces of data are two clicks away maximum
+
+
+========
+=  PAGES =
+========
+
+- Nav bar:
+    - Data by day or month
+    - Trends 
+        - shows activities by mood or
+        - Shows moods by activity
+    - Profile: Account management
+
+- Home: Normal
+    - Displays last check in time and mood
+    - Two buttons:
+        - Time Activity
+        - Check In
+    - Nav bar
+
+HOME: TIMING ACTIVITY
+
+- Purpose: Show duration and basic info of current Moment being recorded
+    - Provide easy way to check in mood
+
+- Displays:
+    - Activity selected as heading
+    - Start time and notes on task specifics as small text
+    - current duration of activity as main text
+    - Button to stop timing activity
+        - This button should lead to mood check in at end of task
+- Mood Check In
+    - 5 mood circles are tappable 
+    - Optional input for emotions or notes
+    - “Check in now” button to record another mood during activity
+- Nav bar
+
+START ACTIVITY SCREEN
+
+- Purpose: Easily enter information and current mood before starting a Moment
+
+- Should be able to:
+    - Select activity
+    - Select mood
+    - Optional inputs:
+        - Notes on activity specifics - i.e. specific task at hand
+        - Notes on mood and emotions - i.e. emotion descriptors 
+- Has a “start timing activity” button
+
+MOMENT OVERVIEW
+
+- Purpose: Show activity information and mood information for a recorded Moment
+
+- Displays:
+    - Activity selected as heading
+    - Time start to time end 
+    - Notes on task specifics
+    - Total Duration
+- Moods section
+    - Minimum shows start and end mood with times
+        - Click mood listing to show mood notes if exists?
+    - If one or more mood check ins during activity, these are listed chronologically too
+
+
+DAY OVERVIEW
+
+- Purpose: Show the current moods and entries for a day
+
+- Display current date first
+    - Left and right arrows allow you to navigate back and forth one day up to current day
+- Display mood chart: line graph of mood vs. time for ALL moods recorded that day
+- Display entries
+    - Clicking an entry leads to a moments overview of entry
+    - Chronological order of all timed activities and check in s today
+        - Time activity:
+            - Display activity selected plus optional text
+            - Start time and mood 
+            - End time and mood
+            - All check ins during this Moment isn’t shown on moment card
+        - Check In
+            - Activity selected plus optional text
+            - Time of check in and mood
+- Navigation to calendar view
+
+MONTH OVERVIEW
+
+- Purpose: 
+    - Show the average moods for each day of a month
+    - Show frequency of activity during a month
+
+- Month heading
+- Calendar view
+    - Boxes are colored in with average of recorded moods that day
+    - Clicking a day leads to day overview for day
+- Activities
+    - Each activity selection is a button
+    - Clicking an activity changes the calendar
+        - Calendar is colored in with average mood recorded from activity…? (average…?)
+        - So colored in boxes reflect when you recorded an activity
+        - Bottom shows “average mood change” amount
+
+TRENDS: ACTIVITIES vs. MOOD
+
+- Purpose: 
+    - Provide way to view counts/percentages of recorded activities per mood 
+
+- Must select mood to view data
+- Mood Selection: the five circles with faces 
+    - Clicking one displays data for that mood as a histogram
+    - And displays % number 
+
+TRENDS: MOODS vs. ACTIVITIES
+
+- Purpose: 
+    - Provide a way to view moods recorded for each activity
+
+- Basic stats:
+    - List activity with greatest average mood change and its mood change
+    - List activity with greatest percentage of high mood recorded
+
+- Must select activity to view data
+- Histogram showing % of each mood for selected activity
+
+PROFILE
+
+- Purpose: Provide account management abilities
+- Account info
+    - Name
+    - Email
+    - Password and confirmation
+
+
+
+SVG
+https://www.flaticon.com/packs/smileys-13
+https://www.flaticon.com/premium-icon/happy_2461974
+
+
+
+
+
