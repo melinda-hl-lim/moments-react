@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  Route,
+  Link,
+  Switch,
+} from 'react-router-dom';
+import Home from './Home';
 
 function SignIn() {
   return (
@@ -6,7 +12,7 @@ function SignIn() {
       <div className="max-w-md w-full">
         <div>
           <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-            Sign in to your account
+            Sign In
           </h2>
         </div>
 
@@ -23,9 +29,14 @@ function SignIn() {
           </div>
 
           <div className="mt-6">
-            <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-              Sign in
-            </button>
+            <Link to="/home">
+              <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                Sign in
+              </button>
+            </Link>
+            <Switch>
+              <Route path="/home" component={Home} />
+            </Switch>
           </div>
 
         </form>

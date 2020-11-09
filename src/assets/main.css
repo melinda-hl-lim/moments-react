@@ -33,6 +33,11 @@ body {
  * `article` contexts in Chrome, Firefox, and Safari.
  */
 
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
 /* Grouping content
    ========================================================================== */
 
@@ -236,6 +241,7 @@ template {
  */
 
 
+h1,
 h2 {
   margin: 0;
 }
@@ -328,7 +334,7 @@ button {
   cursor: pointer;
 }
 
-
+h1,
 h2 {
   font-size: inherit;
   font-weight: inherit;
