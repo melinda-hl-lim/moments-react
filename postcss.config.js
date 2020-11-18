@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 // fetch TailwindCSS package
 const tailwindcss = require('tailwindcss');
 
