@@ -1,37 +1,32 @@
 import React from 'react';
+import { RiEmotionLine } from 'react-icons/ri';
 import Button from '../components/Button';
 
 function Home() {
   return (
     <>
-      <div className="flex flex-col w-full bg-white fixed top-0 justify-center items-center rounded-md shadow-md">
-        <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+      {/* Card that shows last check in time and mood */}
+      <div className="flex flex-col w-full bg-white fixed top-0 justify-center items-center rounded-lg shadow-md">
+        <h2 className="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900">
           Last check in at:
         </h2>
         <h2 className="mt-6 text-center text-5xl leading-9 font-extrabold text-gray-900">
           4:15 pm
         </h2>
-        <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900">
           You felt:
         </h2>
+        <span className="text-center text-6xl"><RiEmotionLine /></span>
       </div>
 
-      <div className="max-w-md w-full">
-        <form className="mt-8" action="#">
-
-          <div className="rounded-md shadow-sm">
-
-            <input aria-label="Email address" name="email" type="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Email address" />
-
-            <input aria-label="Password" name="password" type="password" required className="appearance-none rounded-none relative block w-full -mt-px px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Password" />
-
-          </div>
-
-          <div className="mt-6 text-center">
-            <Button text="Sign Out" linkTo="/" />
-          </div>
-
-        </form>
+      {/* Butons to check in or time activity */}
+      <div className="max-w-md w-full h-full">
+        <div className="mt-6 text-center rounded-lg">
+          <Button text="Check In" linkTo="/building" />
+        </div>
+        <div className="mt-6 text-center rounded-lg">
+          <Button text="Time Activity" linkTo="/time_activity_select" />
+        </div>
       </div>
     </>
   );
