@@ -12,7 +12,7 @@ import Input from '../components/Input';
 
 function BuildingArea() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="h-custom flex flex-col items-center justify-center bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md">
         <h1 className="text-center text-5xl mt-8 mx-4">BUILDING AREA</h1>
 

@@ -508,6 +508,10 @@ input {
   justify-content: space-around;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .font-medium {
   font-weight: 500;
 }
@@ -520,8 +524,8 @@ input {
   height: 4rem;
 }
 
-.h-full {
-  height: 100%;
+.h-custom {
+  height: 93vh;
 }
 
 .text-2xl {
@@ -581,6 +585,10 @@ input {
 
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
 }
 
 .-mt-px {
