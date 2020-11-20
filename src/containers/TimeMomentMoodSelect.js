@@ -12,7 +12,7 @@ import Input from '../components/Input';
 
 function TimeMomentMoodSelect() {
   return (
-    <div className="h-custom flex flex-col items-center justify-center bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col items-center bg-orange-100">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md">
         <h1 className="text-center text-2xl mt-8 mx-4">You selected</h1>
 
@@ -28,31 +28,34 @@ function TimeMomentMoodSelect() {
         </div>
       </div>
 
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md mt-8">
-        <h1 className="text-center text-3xl mt-8 mx-4">How Do You Feel?</h1>
+      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white rounded-lg shadow-md mt-8">
+          <h1 className="text-center text-3xl mt-8 mx-4">How Do You Feel?</h1>
 
-        <div className="flex justify-around items-center my-8 mx-4 max-w-md bg-white rounded-lg">
+          <div className="flex justify-around items-center my-8 mx-4 max-w-md bg-white rounded-lg">
 
-          <span className="text-4xl m-0"><RiEmotionSadLine /></span>
-          <span className="text-4xl m-0"><RiEmotionUnhappyLine /></span>
-          <span className="text-4xl m-0"><RiEmotionNormalLine /></span>
-          <span className="text-4xl m-0"><RiEmotionHappyLine /></span>
-          <span className="text-4xl m-0"><RiEmotionLaughLine /></span>
+            <span className="text-4xl m-0"><RiEmotionSadLine /></span>
+            <span className="text-4xl m-0"><RiEmotionUnhappyLine /></span>
+            <span className="text-4xl m-0"><RiEmotionNormalLine /></span>
+            <span className="text-4xl m-0"><RiEmotionHappyLine /></span>
+            <span className="text-4xl m-0"><RiEmotionLaughLine /></span>
 
+          </div>
+
+          <div className="mx-4 mb-8">
+            <Input
+              name="Description"
+              type="text"
+              required="false"
+              position="singular"
+            />
+          </div>
         </div>
 
-        <div className="mx-4 mb-8">
-          <Input
-            name="Description"
-            type="text"
-            required="false"
-            position="singular"
-          />
-        </div>
+        <Button text="Start Activity" linkTo="/building" />
       </div>
-
-      <Button text="Start Activity" linkTo="/building" />
     </div>
+
   );
 }
 

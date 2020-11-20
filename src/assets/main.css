@@ -525,7 +525,7 @@ input {
 }
 
 .h-custom {
-  height: 93vh;
+  height: calc(100vh - 60px);
 }
 
 .text-2xl {
@@ -601,6 +601,10 @@ input {
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-custom {
+  min-height: calc(100vh - 60px);
 }
 
 .focus\:outline-none:focus {

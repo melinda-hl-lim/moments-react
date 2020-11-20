@@ -4,7 +4,7 @@ import Input from '../components/Input';
 
 function SignIn() {
   return (
-    <div className="h-custom flex flex-col items-center justify-center bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         <div>
           <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">

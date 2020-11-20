@@ -304,7 +304,7 @@ module.exports = {
       ...theme('spacing'),
       full: '100%',
       screen: '100vh',
-      custom: '93vh',
+      custom: 'calc(100vh - 60px)',
     }),
     inset: {
       0: '0',
@@ -367,6 +367,7 @@ module.exports = {
       0: '0',
       full: '100%',
       screen: '100vh',
+      custom: 'calc(100vh - 60px)',
     },
     minWidth: {
       0: '0',
