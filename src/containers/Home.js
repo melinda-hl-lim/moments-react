@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
 
-      <div className="min-h-custom flex flex-col items-center bg-orange-100">
+      <div className="min-h-custom flex flex-col items-center bg-orange-100 mb-16">
         {/* Card that shows last check in time and mood */}
         {/*  fixed top-0 justify-center items-center */}
         <div className="flex flex-col w-full bg-white rounded-lg shadow-md ">

@@ -587,6 +587,10 @@ input {
   margin-top: 3rem;
 }
 
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
 .-mt-px {
   margin-top: -1px;
 }

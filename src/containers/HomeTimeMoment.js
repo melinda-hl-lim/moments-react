@@ -13,7 +13,7 @@ import Navigation from '../components/Navigation';
 function HomeTimeMoment() {
   return (
     <>
-      <div className="min-h-custom flex flex-col items-center justify-center bg-orange-100">
+      <div className="min-h-custom flex flex-col items-center justify-center bg-orange-100 mb-16">
 
         <div className="max-w-md px-4 py-8 w-full bg-white rounded-lg shadow-md">
           <h2 className="text-4xl">Family</h2>
@@ -24,7 +24,7 @@ function HomeTimeMoment() {
             <h1 className="text-5xl">05:54</h1>
           </div>
 
-          <Button text="Finish Activity" linkTo="/building" />
+          <Button text="Finish Activity" linkTo="/time_moment_last_mood" />
         </div>
 
         <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
@@ -51,7 +51,7 @@ function HomeTimeMoment() {
             </div>
           </div>
 
-          <Button text="Check In" linkTo="/TimeMomentLastMood" />
+          <Button text="Check In" />
         </div>
       </div>
 
