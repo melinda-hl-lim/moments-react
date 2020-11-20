@@ -10,11 +10,11 @@ import {
 import Button from '../components/Button';
 import Input from '../components/Input';
 
-function BuildingArea() {
+function TimeMomentMoodSelect() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md">
-        <h1 className="text-center text-5xl mt-8 mx-4">BUILDING AREA</h1>
+        <h1 className="text-center text-2xl mt-8 mx-4">You selected</h1>
 
         <div className="flex justify-around items-center my-4 mx-4 max-w-md bg-white rounded-lg">
           <div className="flex flex-col items-center">
@@ -56,4 +56,4 @@ function BuildingArea() {
   );
 }
 
-export default BuildingArea;
+export default TimeMomentMoodSelect;

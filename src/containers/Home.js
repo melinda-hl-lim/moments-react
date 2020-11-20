@@ -4,7 +4,7 @@ import Button from '../components/Button';
 
 function Home() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
       {/* Card that shows last check in time and mood */}
       <div className="flex flex-col w-full bg-white fixed top-0 justify-center items-center rounded-lg shadow-md">
         <h2 className="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900">
@@ -25,10 +25,10 @@ function Home() {
           <Button text="Check In" linkTo="/building" />
         </div>
         <div className="mt-6 text-center rounded-lg">
-          <Button text="Time Activity" linkTo="/time_activity_select" />
+          <Button text="Time Activity" linkTo="/time_moment_activity_select" />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
