@@ -52,7 +52,7 @@ function TimeMomentMoodSelect() {
           </div>
         </div>
 
-        <Button text="Start Activity" linkTo="/building" />
+        <Button text="Start Activity" linkTo="/home_timing" />
       </div>
     </div>
 

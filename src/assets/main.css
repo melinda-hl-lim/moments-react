@@ -524,10 +524,6 @@ input {
   height: 4rem;
 }
 
-.h-custom {
-  height: calc(100vh - 60px);
-}
-
 .text-2xl {
   font-size: 1.5rem;
 }
@@ -604,7 +600,7 @@ input {
 }
 
 .min-h-custom {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 65px);
 }
 
 .focus\:outline-none:focus {
@@ -634,6 +630,11 @@ input {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .py-12 {
