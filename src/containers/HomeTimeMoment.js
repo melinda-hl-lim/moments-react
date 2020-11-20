@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import Navigation from '../components/Navigation';
 
-function HomeTiming() {
+function HomeTimeMoment() {
   return (
     <>
       <div className="min-h-custom flex flex-col items-center justify-center bg-orange-100">
@@ -51,7 +51,7 @@ function HomeTiming() {
             </div>
           </div>
 
-          <Button text="Check In" linkTo="/building" />
+          <Button text="Check In" linkTo="/TimeMomentLastMood" />
         </div>
       </div>
 
@@ -60,4 +60,4 @@ function HomeTiming() {
   );
 }
 
-export default HomeTiming;
+export default HomeTimeMoment;
