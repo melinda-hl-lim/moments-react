@@ -18,7 +18,7 @@ function BuildingArea() {
         <p>Spend some time with the fam bam for the holidays</p>
 
         <div className="flex justify-center items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-          <h1 className="text-5xl">06 hr 00 min</h1>
+          <h1 className="text-5xl">BUILDING AREA</h1>
         </div>
 
       </div>
