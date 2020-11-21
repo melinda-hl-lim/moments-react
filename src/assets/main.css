@@ -50,6 +50,12 @@ h1 {
  * 2. Show the overflow in Edge and IE.
  */
 
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
 /**
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
@@ -247,6 +253,7 @@ template {
 
 h1,
 h2,
+hr,
 p {
   margin: 0;
 }
@@ -327,6 +334,10 @@ html {
 /*
  * Ensure horizontal rules are visible by default
  */
+
+hr {
+  border-top-width: 1px;
+}
 
 /**
  * Undo the `border-style: none` reset that Normalize applies to images so that
@@ -524,6 +535,10 @@ input {
   height: 4rem;
 }
 
+.text-base {
+  font-size: 1rem;
+}
+
 .text-2xl {
   font-size: 1.5rem;
 }
@@ -554,6 +569,16 @@ input {
 
 .m-0 {
   margin: 0;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 
 .my-4 {

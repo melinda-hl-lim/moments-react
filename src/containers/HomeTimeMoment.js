@@ -21,7 +21,7 @@ function HomeTimeMoment() {
           <p>Spend some time with the fam bam for the holidays</p>
 
           <div className="flex justify-center items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-            <h1 className="text-5xl">05:54</h1>
+            <h1 className="text-5xl">05 hr 54 min</h1>
           </div>
 
           <Button text="Finish Activity" linkTo="/time_moment_last_mood" />

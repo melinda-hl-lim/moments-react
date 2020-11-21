@@ -7,7 +7,7 @@ import {
 import Button from '../components/Button';
 import Input from '../components/Input';
 
-function BuildingArea() {
+function MomentOverview() {
   return (
 
     <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100">
@@ -69,4 +69,4 @@ function BuildingArea() {
   );
 }
 
-export default BuildingArea;
+export default MomentOverview;

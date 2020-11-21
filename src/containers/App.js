@@ -7,6 +7,7 @@ import BuildingArea from './BuildingArea';
 import TimeMomentActivitySelect from './TimeMomentActivitySelect';
 import TimeMomentMoodSelect from './TimeMomentMoodSelect';
 import TimeMomentLastMood from './TimeMomentLastMood';
+import MomentOverview from './MomentOverview';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
 
       <Switch>
         <Route path="/building" component={BuildingArea} />
+        <Route path="/moment_overview" component={MomentOverview} />
         <Route path="/time_moment_last_mood" component={TimeMomentLastMood} />
         <Route path="/time_moment_mood_select" component={TimeMomentMoodSelect} />
         <Route path="/time_moment_activity_select" component={TimeMomentActivitySelect} />

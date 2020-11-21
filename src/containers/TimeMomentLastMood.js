@@ -39,7 +39,7 @@ function TimeMomentLastMood() {
           </div>
         </div>
 
-        <Button text="Finish" linkTo="/home" />
+        <Button text="Next" linkTo="/moment_overview" />
       </div>
     </div>
 
