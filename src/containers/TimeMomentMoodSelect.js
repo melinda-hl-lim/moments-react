@@ -13,7 +13,8 @@ import Input from '../components/Input';
 function TimeMomentMoodSelect() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-orange-100">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md">
+
+      <div className="flex flex-col w-full bg-white rounded-lg shadow-md">
         <h1 className="text-center text-2xl mt-8 mx-4">You selected</h1>
 
         <div className="flex justify-around items-center my-4 mx-4 max-w-md bg-white rounded-lg">

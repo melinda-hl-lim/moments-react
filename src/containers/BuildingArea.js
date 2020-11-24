@@ -10,17 +10,20 @@ import Input from '../components/Input';
 function BuildingArea() {
   return (
 
-    <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100">
-
-      <div className="max-w-md px-4 py-8 w-full bg-white rounded-lg shadow-md">
-        <h2 className="text-4xl">Family</h2>
-        <p>3:15 PM to 9:15 PM</p>
-        <p>Spend some time with the fam bam for the holidays</p>
-
-        <div className="flex justify-center items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-          <h1 className="text-5xl">BUILDING AREA</h1>
-        </div>
-
+    <div className="min-h-custom flex flex-col items-center bg-orange-100 mb-16">
+      {/* Card that shows last check in time and mood */}
+      {/*  fixed top-0 justify-center items-center */}
+      <div className="flex flex-col w-full px-4 py-8 bg-white rounded-lg shadow-md ">
+        <h2 className="mt-12 text-center text-4xl leading-9 font-extrabold text-gray-900">
+          Last check in at:
+        </h2>
+        <h2 className="mt-6 text-center text-5xl leading-9 font-extrabold text-gray-900">
+          4:15 pm
+        </h2>
+        <h2 className="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900">
+          You felt:
+        </h2>
+        <span className="text-center text-6xl"><RiEmotionNormalLine /></span>
       </div>
 
       <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">

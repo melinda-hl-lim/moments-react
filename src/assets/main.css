@@ -439,10 +439,6 @@ input {
   background-color: rgba(128, 203, 196, var(--bg-opacity));
 }
 
-.border-transparent {
-  border-color: transparent;
-}
-
 .border-gray-300 {
   --border-opacity: 1;
   border-color: #e2e8f0;
@@ -539,6 +535,10 @@ input {
   font-size: 1rem;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+}
+
 .text-2xl {
   font-size: 1.5rem;
 }
@@ -557,10 +557,6 @@ input {
 
 .text-6xl {
   font-size: 4rem;
-}
-
-.leading-5 {
-  line-height: 1.25rem;
 }
 
 .leading-9 {
@@ -656,9 +652,9 @@ input {
   padding-right: 1rem;
 }
 
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .py-8 {

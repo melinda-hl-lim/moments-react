@@ -26,10 +26,10 @@ function Home() {
         {/* Butons to check in or time activity */}
         <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
           <div className="w-full text-center rounded-lg">
-            <Button text="Check In" linkTo="/building" />
+            <Button text="Record a Mood" linkTo="/building" />
           </div>
           <div className="w-full text-center rounded-lg">
-            <Button text="Time Activity" linkTo="/time_moment_activity_select" />
+            <Button text="Time an Activity" linkTo="/time_moment_activity_select" />
           </div>
         </div>
       </div>

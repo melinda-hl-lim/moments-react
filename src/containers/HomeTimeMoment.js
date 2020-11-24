@@ -9,23 +9,20 @@ import {
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Navigation from '../components/Navigation';
+import MomentHeaderCard from '../components/MomentHeaderCard';
 
 function HomeTimeMoment() {
   return (
     <>
       <div className="min-h-custom flex flex-col items-center justify-center bg-orange-100 mb-16">
 
-        <div className="max-w-md px-4 py-8 w-full bg-white rounded-lg shadow-md">
-          <h2 className="text-4xl">Family</h2>
-          <p>Start Time: 3:15 PM</p>
-          <p>Spend some time with the fam bam for the holidays</p>
-
-          <div className="flex justify-center items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-            <h1 className="text-5xl">05 hr 54 min</h1>
-          </div>
-
-          <Button text="Finish Activity" linkTo="/time_moment_last_mood" />
-        </div>
+        <MomentHeaderCard
+          activityCategory="Family"
+          startTime="3:15 PM"
+          activityDescription="Spend some time with the fam bam for the holidays"
+          duration="05 hr 54 min"
+          button="true"
+        />
 
         <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full bg-white rounded-lg shadow-md mt-8">
