@@ -32,6 +32,10 @@ body {
  * Render the `main` element consistently in IE.
  */
 
+main {
+  display: block;
+}
+
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
@@ -587,9 +591,18 @@ input {
   margin-right: 1rem;
 }
 
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .mt-6 {
@@ -647,14 +660,14 @@ input {
   padding-right: 0.75rem;
 }
 
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
 }
 
 .py-8 {

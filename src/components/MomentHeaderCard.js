@@ -26,7 +26,7 @@ function MomentHeaderCard({
       <p>{timeInfo}</p>
       <p>{activityDescription}</p>
 
-      <div className="flex justify-center items-center my-4 mx-4 bg-white rounded-lg">
+      <div className="flex justify-center items-center">
         <h1 className="text-5xl">{duration}</h1>
       </div>
 
