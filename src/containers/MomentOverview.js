@@ -20,10 +20,10 @@ function MomentOverview() {
         activityDescription="Spend some time with the fam bam for the holidays"
       />
 
-      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4">
+      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
 
         <div className="max-w-md w-full bg-white rounded-lg shadow-md px-4 py-8">
-          <h1 className="text-center text-4xl">You felt:</h1>
+          <h1 className="text-center text-3xl">You felt:</h1>
 
           <ul className="mt-6 max-w-md">
 

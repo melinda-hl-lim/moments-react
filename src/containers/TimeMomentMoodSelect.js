@@ -25,10 +25,8 @@ function TimeMomentMoodSelect() {
       </div>
 
       {/* main content area */}
-      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
-        {/* mood check in card */}
+      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
         <MoodCheckIn />
-
         <Button text="Start Activity" linkTo="/home_timing" />
       </div>
     </div>
