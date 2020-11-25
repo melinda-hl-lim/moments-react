@@ -6,7 +6,6 @@ import Navigation from '../components/Navigation';
 function HomeNormal() {
   return (
     <>
-
       <div className="min-h-custom flex flex-col items-center bg-orange-100 mb-16">
         {/* Card that shows last check in time and mood */}
         {/*  fixed top-0 justify-center items-center */}
