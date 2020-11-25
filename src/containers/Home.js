@@ -1,25 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import HomeNormal from './HomeNormal';
 import HomeTimeMoment from './HomeTimeMoment';
 
 function Home() {
-  const timedActivity = {
-    id: 15,
-    created_at: '2020-06-22 15:15:25',
-    finished_at: '',
-    description: 'Spending time with the fam bam',
-    category: 'Family',
-    user_id: 4,
-  };
+  // const [mounted, setMounted] = useState(false);
+  const [data, setData] = useState(null);
 
-  // TODO - change timingActivity so it actually queries the database
-  const timingActivity = null;
+  function isCompleteMoment(moment) {
+    return !!(moment.finishedAt);
+  }
 
-  return (
-    timingActivity
-      ? (<HomeTimeMoment timedActivity={timedActivity} />)
-      : (<HomeNormal />)
-  );
+  // TODO: isTiming is always undefined and doesn't work
+  // Build custom object in data OR set timing as a state
+  // Then UNSTRICTIFY LINTER
+  let isTiming;
+
+  useEffect(() => {
+    axios.get('/most_recent_moment')
+      .then((res) => {
+        isTiming = !(isCompleteMoment(res.data.moment));
+        setData(res.data);
+      })
+      .catch((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+      });
+  }, []);
+
+  if (data) {
+    return (
+      isTiming
+        ? (<HomeTimeMoment timedActivity={data.moment} />)
+        : (<HomeNormal lastMood={data.mood} />));
+  }
+  return '';
 }
 
 export default Home;
