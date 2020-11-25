@@ -3,15 +3,15 @@ import Navigation from '../components/Navigation';
 import MomentHeaderCard from '../components/MomentHeaderCard';
 import MoodCheckIn from '../components/MoodCheckIn';
 
-function HomeTimeMoment() {
+function HomeTimeMoment({ timedActivity }) {
   return (
     <>
       <div className="min-h-custom flex flex-col items-center justify-center bg-orange-100 mb-16">
 
         <MomentHeaderCard
-          activityCategory="Family"
-          startTime="3:15 PM"
-          activityDescription="Spend some time with the fam bam for the holidays"
+          activityCategory={timedActivity.category}
+          startTime={timedActivity.created_at}
+          activityDescription={timedActivity.description}
           duration="05 hr 54 min"
           button="true"
         />

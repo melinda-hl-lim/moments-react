@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
-import HomeTiming from './HomeTimeMoment';
 import SignIn from './SignIn';
 import BuildingArea from './BuildingArea';
 import TimeMomentActivitySelect from './TimeMomentActivitySelect';
@@ -19,9 +18,8 @@ function App() {
         <Route path="/time_moment_last_mood" component={TimeMomentLastMood} />
         <Route path="/time_moment_mood_select" component={TimeMomentMoodSelect} />
         <Route path="/time_moment_activity_select" component={TimeMomentActivitySelect} />
-        <Route path="/home_timing" component={HomeTiming} />
-        <Route path="/home" component={Home} />
-        <Route exact path="/" component={SignIn} />
+        <Route exact path="/sign_in" component={SignIn} />
+        <Route path="/" component={Home} />
       </Switch>
 
     </BrowserRouter>

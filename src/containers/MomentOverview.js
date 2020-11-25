@@ -51,7 +51,7 @@ function MomentOverview() {
           </ul>
         </div>
 
-        <Button text="Finish" linkTo="/home" />
+        <Button text="Finish" linkTo="/" />
       </div>
     </div>
 

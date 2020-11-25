@@ -8,8 +8,8 @@ import MoodCheckIn from '../components/MoodCheckIn';
 function TimeMomentMoodSelect() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-orange-100">
-
-      <div className="flex flex-col w-full bg-white rounded-lg shadow-md">
+      {/* Header card */}
+      <div className="flex flex-col items-center w-full bg-white rounded-lg shadow-md">
         <h1 className="text-center text-2xl mt-8 mx-4">You selected</h1>
 
         <div className="flex justify-around items-center my-4 mx-4 max-w-md bg-white rounded-lg">
@@ -27,7 +27,7 @@ function TimeMomentMoodSelect() {
       {/* main content area */}
       <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
         <MoodCheckIn />
-        <Button text="Start Activity" linkTo="/home_timing" />
+        <Button text="Start Activity" linkTo="/" />
       </div>
     </div>
 
