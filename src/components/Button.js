@@ -10,7 +10,8 @@ function Button({ text, linkTo, onClick }) {
       <Link to={linkTo}>
         <button
           type="submit"
-          className="group relative flex w-full justify-center py-4 px-4 text-xl font-medium rounded-md text-white bg-primary-dark hover:bg-primary-light focus:outline-none focus:border-primary-dark focus:shadow-outline-indigo transition duration-150 ease-in-out"
+          className="group relative flex w-full justify-center py-4 px-4 text-xl font-medium rounded-md text-white bg-primary-dark hover:bg-primary-light focus:outline-none focus:border-primary-dark transition duration-150 ease-in-out"
+          // focus:shadow-outline-indigo
           onClick={onClick}
         >
           {text}

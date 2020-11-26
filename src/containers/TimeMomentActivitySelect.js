@@ -34,7 +34,7 @@ function TimeMomentActivitySelect() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-orange-100">
+    <div className="min-h-screen flex flex-col items-center bg-yellow-50">
 
       <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
         <div className="fixed top-1 left-1 text-4xl">

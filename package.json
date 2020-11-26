@@ -9,12 +9,13 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "fontsource-quicksand": "^3.0.3",
+    "postcss": "^8.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
-    "tailwindcss": "^1.9.6",
+    "tailwindcss": "^2.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -43,7 +44,7 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.0.2",
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.1",

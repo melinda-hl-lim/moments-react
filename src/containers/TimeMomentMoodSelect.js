@@ -11,7 +11,7 @@ function TimeMomentMoodSelect({ location }) {
   return (
     state
       ? (
-        <div className="min-h-screen flex flex-col items-center bg-orange-100">
+        <div className="min-h-screen flex flex-col items-center bg-yellow-50">
           <CardFullWidth>
             <h1 className="text-center text-2xl mx-4">You selected</h1>
 

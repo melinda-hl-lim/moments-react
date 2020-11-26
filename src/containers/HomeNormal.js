@@ -47,7 +47,7 @@ function HomeNormal({ lastMood }) {
   }
   return (
     <>
-      <div className="min-h-custom flex flex-col items-center bg-orange-100 mb-16">
+      <div className="min-h-custom flex flex-col items-center bg-yellow-50 mb-16">
 
         <CardFullWidth>
           <h2 className="mt-4 text-center text-4xl leading-9 font-extrabold text-gray-900">

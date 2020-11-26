@@ -10,7 +10,7 @@ import MomentHeaderCard from '../components/MomentHeaderCard';
 function MomentOverview() {
   return (
 
-    <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-yellow-50">
 
       <MomentHeaderCard
         activityCategory="Family"

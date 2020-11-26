@@ -6,7 +6,7 @@ import MoodCheckIn from '../components/MoodCheckIn';
 function HomeTimeMoment({ timedActivity }) {
   return (
     <>
-      <div className="min-h-custom flex flex-col items-center justify-center bg-orange-100 mb-16">
+      <div className="min-h-custom flex flex-col items-center justify-center bg-yellow-50 mb-16">
 
         <MomentHeaderCard
           activityCategory={timedActivity.category}
