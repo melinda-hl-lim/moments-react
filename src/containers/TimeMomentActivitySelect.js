@@ -55,7 +55,7 @@ function TimeMomentActivitySelect() {
         <Button
           text="Next"
           linkTo={{
-            pathname: 'time_moment_mood_select',
+            pathname: '/moment/new/select_mood',
             state: {
               category,
               description,

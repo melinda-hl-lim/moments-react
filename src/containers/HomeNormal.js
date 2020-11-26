@@ -69,7 +69,7 @@ function HomeNormal({ lastMood }) {
             <Button text="Record a Mood" linkTo="/building" />
           </div>
           <div className="w-full text-center rounded-lg">
-            <Button text="Time an Activity" linkTo="/time_moment_activity_select" />
+            <Button text="Time an Activity" linkTo="/moment/new/select_activity" />
           </div>
         </div>
 

@@ -16,8 +16,9 @@ function App() {
         <Route path="/building" component={BuildingArea} />
         <Route path="/moment_overview" component={MomentOverview} />
         <Route path="/time_moment_last_mood" component={TimeMomentLastMood} />
-        <Route path="/time_moment_mood_select" component={TimeMomentMoodSelect} />
-        <Route path="/time_moment_activity_select" component={TimeMomentActivitySelect} />
+
+        <Route path="/moment/new/select_mood" component={TimeMomentMoodSelect} />
+        <Route path="/moment/new/select_activity" component={TimeMomentActivitySelect} />
         <Route exact path="/sign_in" component={SignIn} />
         <Route path="/" component={Home} />
       </Switch>
