@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import Card from './Card';
 import Input from './Input';
 import MoodSelectionIcons from './MoodSelectionIcons';
 
@@ -18,7 +19,7 @@ function MoodCheckIn({
   }
 
   return (
-    <div className="max-w-md w-full bg-white rounded-lg shadow-md px-4 py-8">
+    <Card>
       {miniTitle}
       <h1 className="text-center text-3xl mb-4">How Do You Feel?</h1>
 
@@ -32,7 +33,7 @@ function MoodCheckIn({
       />
 
       {finishButton}
-    </div>
+    </Card>
   );
 }
 

@@ -9,7 +9,7 @@ import { MdWork, MdLocalGroceryStore } from 'react-icons/md';
 
 function ActivitySelection() {
   return (
-    <div className="flex justify-around items-center my-8 mx-4 max-w-md bg-white rounded-lg">
+    <div className="flex justify-around items-center mt-4 py-4 px-4 max-w-md w-full bg-white">
 
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center p-2">
