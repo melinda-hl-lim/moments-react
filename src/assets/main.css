@@ -407,6 +407,12 @@ input {
  * https://github.com/mozdevs/cssremedy/issues/14
  */
 
+
+object {
+  display: block;
+  vertical-align: middle;
+}
+
 /**
  * Constrain images and videos to the parent width and preserve
  * their instrinsic aspect ratio.
