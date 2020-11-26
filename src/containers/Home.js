@@ -10,7 +10,6 @@ function Home() {
     return !!(moment.finishedAt);
   }
 
-  // Then UNSTRICTIFY LINTER
   useEffect(() => {
     axios.get('/most_recent_moment')
       .then((res) => {

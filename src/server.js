@@ -6,7 +6,6 @@ function makeServer({ environment = 'development' } = {}) {
     environment,
 
     routes() {
-      // return all timed activities, check ins and moods...?
       this.get('/most_recent_moment', () => ({
         moment: {
           createdAt: '2020-06-22 15:15:25',
@@ -15,7 +14,7 @@ function makeServer({ environment = 'development' } = {}) {
           category: 'Family',
         },
         mood: {
-          createdAt: '2020-06-22 21:15:25',
+          createdAt: '2020-06-22 07:15:25',
           rating: 4,
           description: 'Feeling relieved and content',
         },
