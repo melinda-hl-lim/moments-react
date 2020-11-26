@@ -16,6 +16,22 @@ function TimeMomentActivitySelect() {
     setDescription(e.currentTarget.value);
   }
 
+  function validCategory(givenCategory) {
+    return givenCategory !== '';
+  }
+
+  function cleanDescriptionInput(givenDescription) {
+    setDescription(givenDescription);
+  }
+
+  function verifyAndPassInputs(e) {
+    if (!validCategory(category)) {
+      e.preventDefault();
+      console.log('You have to select a thing!!!');
+    }
+    cleanDescriptionInput(description);
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center bg-orange-100">
 
@@ -36,7 +52,17 @@ function TimeMomentActivitySelect() {
             />
           </div>
         </Card>
-        <Button text="Next" linkTo="/time_moment_mood_select" />
+        <Button
+          text="Next"
+          linkTo={{
+            pathname: 'time_moment_mood_select',
+            state: {
+              category,
+              description,
+            },
+          }}
+          onClick={(e) => verifyAndPassInputs(e)}
+        />
       </div>
     </div>
   );

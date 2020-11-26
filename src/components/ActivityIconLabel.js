@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RiHomeHeartFill } from 'react-icons/ri';
 import {
   FaUserFriends, FaHeart, FaBookOpen, FaRunning, FaBath, FaUmbrellaBeach, FaStar,
