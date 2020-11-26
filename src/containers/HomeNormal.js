@@ -11,6 +11,7 @@ import CardFullWidth from '../components/CardFullWidth';
 import Navigation from '../components/Navigation';
 
 function HomeNormal({ lastMood }) {
+  // Check out using date.toLocaleTimeString()
   function timestampToReadable(timestamp) {
     const date = new Date(timestamp);
     let hour = date.getHours();

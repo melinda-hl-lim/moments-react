@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-  RiHomeHeartFill,
-} from 'react-icons/ri';
 import Button from '../components/Button';
 import CardFullWidth from '../components/CardFullWidth';
+import ActivityIconLabel from '../components/ActivityIconLabel';
 import MoodCheckIn from '../components/MoodCheckIn';
 
 function TimeMomentMoodSelect() {
@@ -14,10 +12,7 @@ function TimeMomentMoodSelect() {
         <h1 className="text-center text-2xl mx-4">You selected</h1>
 
         <div className="flex flex-col justify-around items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-          <div className="flex flex-col items-center">
-            <span className="text-3xl m-0"><RiHomeHeartFill /></span>
-            <p className="-mt-px">Family</p>
-          </div>
+          <ActivityIconLabel label="Family" />
           <p className="mt-4">Spend some time with the fam bam for the holidays</p>
         </div>
       </CardFullWidth>

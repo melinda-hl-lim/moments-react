@@ -428,7 +428,10 @@ module.exports = {
       1: '1',
       2: '2',
     },
-    textColor: (theme) => theme('colors'),
+    textColor: {
+      'primary-dark': '#4f9a94',
+      white: '#ffffff',
+    },
     textOpacity: (theme) => theme('opacity'),
     width: (theme) => ({
       auto: 'auto',

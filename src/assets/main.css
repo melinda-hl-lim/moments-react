@@ -515,10 +515,6 @@ input {
   justify-content: center;
 }
 
-.justify-between {
-  justify-content: space-between;
-}
-
 .justify-around {
   justify-content: space-around;
 }
@@ -722,16 +718,16 @@ input {
   text-align: center;
 }
 
-.text-white {
+.text-primary-dark {
   --text-opacity: 1;
-  color: #fff;
-  color: rgba(255, 255, 255, var(--text-opacity));
+  color: #4f9a94;
+  color: rgba(79, 154, 148, var(--text-opacity));
 }
 
-.text-gray-900 {
+.text-white {
   --text-opacity: 1;
-  color: #1a202c;
-  color: rgba(26, 32, 44, var(--text-opacity));
+  color: #ffffff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .w-full {
