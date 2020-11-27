@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IoIosArrowBack } from 'react-icons/io';
 import ActivitySelection from '../components/ActivitySelection';
+import BackButton from '../components/BackButton';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import Input from '../components/Input';
@@ -21,6 +21,7 @@ function TimeMomentActivitySelect() {
     return givenCategory !== '';
   }
 
+  // TODO: Create an actual way to clean description...? Or is this Rails?
   function cleanDescriptionInput(givenDescription) {
     setDescription(givenDescription);
   }
@@ -28,6 +29,7 @@ function TimeMomentActivitySelect() {
   function verifyAndPassInputs(e) {
     if (!validCategory(category)) {
       e.preventDefault();
+      // TODO: Show a warning message to user
       console.log('You have to select a thing!!!');
     }
     cleanDescriptionInput(description);
@@ -35,18 +37,17 @@ function TimeMomentActivitySelect() {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-yellow-50">
+      <BackButton />
 
       <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
-        <div className="fixed top-1 left-1 text-4xl">
-          <IoIosArrowBack />
-        </div>
+
         <Card>
-          <h1 className="text-center text-3xl mx-4">Select an Activity</h1>
+          <h1 className="text-center text-3xl">Select an Activity</h1>
           <ActivitySelection
             onClick={(e) => handleClick(e)}
             selected={category}
           />
-          <div className="mx-4">
+          <div className="">
             <Input
               name="Description"
               type="text"

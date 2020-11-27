@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { IoIosArrowBack } from 'react-icons/io';
 import Button from '../components/Button';
 import CardFullWidth from '../components/CardFullWidth';
 import ActivityIconLabel from '../components/ActivityIconLabel';
@@ -12,6 +13,9 @@ function TimeMomentMoodSelect({ location }) {
     state
       ? (
         <div className="min-h-screen flex flex-col items-center bg-yellow-50">
+          <div className="absolute self-start left-1 text-4xl">
+            <IoIosArrowBack />
+          </div>
           <CardFullWidth>
             <h1 className="text-center text-2xl mx-4">You selected</h1>
 
