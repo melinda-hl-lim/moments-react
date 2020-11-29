@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button';
@@ -8,6 +8,16 @@ import MoodCheckIn from '../components/MoodCheckIn';
 
 function TimeMomentMoodSelect({ location }) {
   const { state } = location;
+  const [mood, setMood] = useState('0');
+  const [moodDescription, setMoodDescription] = useState('');
+
+  function handleClick(e) {
+    setMood(e.currentTarget.dataset.mood);
+  }
+
+  function handleInput(e) {
+    setMoodDescription(e.currentTarget.value);
+  }
 
   return (
     state
@@ -28,8 +38,14 @@ function TimeMomentMoodSelect({ location }) {
 
           {/* main content area */}
           <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
-            <MoodCheckIn />
-            <Button text="Start Activity" linkTo="/" />
+            <MoodCheckIn
+              onClick={(e) => handleClick(e)}
+              onInput={(e) => handleInput(e)}
+            />
+            <Button
+              text="Start Activity"
+              linkTo="/"
+            />
           </div>
         </div>
       )
