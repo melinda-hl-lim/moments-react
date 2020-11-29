@@ -21,8 +21,6 @@ function TimeMomentMoodSelect({ location }) {
   }
 
   function postNewMoment(e) {
-    e;
-    debugger;
     const data = {
       category: state.category,
       activityDescription: state.description,
@@ -33,7 +31,6 @@ function TimeMomentMoodSelect({ location }) {
     axios.post('/moment/create', data)
       .then((response) => {
         console.log(response);
-        debugger;
         response;
       });
   }
