@@ -25,7 +25,7 @@ function makeServer({ environment = 'development' } = {}) {
         mood: database.mood[0],
       }));
 
-      this.post('/moment/create', (request) => {
+      this.post('/moment/create', (schema, request) => {
         const data = JSON.parse(request.requestBody);
 
         const date = new Date();
