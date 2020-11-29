@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button';
@@ -8,7 +9,7 @@ import MoodCheckIn from '../components/MoodCheckIn';
 
 function TimeMomentMoodSelect({ location }) {
   const { state } = location;
-  const [mood, setMood] = useState('0');
+  const [mood, setMood] = useState(null);
   const [moodDescription, setMoodDescription] = useState('');
 
   function handleClick(e) {
@@ -17,6 +18,24 @@ function TimeMomentMoodSelect({ location }) {
 
   function handleInput(e) {
     setMoodDescription(e.currentTarget.value);
+  }
+
+  function postNewMoment(e) {
+    e;
+    debugger;
+    const data = {
+      category: state.category,
+      activityDescription: state.description,
+      mood,
+      moodDescription,
+    };
+
+    axios.post('/moment/create', data)
+      .then((response) => {
+        console.log(response);
+        debugger;
+        response;
+      });
   }
 
   return (
@@ -41,10 +60,12 @@ function TimeMomentMoodSelect({ location }) {
             <MoodCheckIn
               onClick={(e) => handleClick(e)}
               onInput={(e) => handleInput(e)}
+              selected={mood}
             />
             <Button
               text="Start Activity"
               linkTo="/"
+              onClick={postNewMoment}
             />
           </div>
         </div>

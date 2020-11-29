@@ -5,7 +5,7 @@ import Input from './Input';
 import MoodSelectionIcons from './MoodSelectionIcons';
 
 function MoodCheckIn({
-  button, lastCheckIn, onClick, onInput,
+  button, lastCheckIn, onClick, onInput, selected,
 }) {
   const buttonPresent = (button === 'true');
   let finishButton;
@@ -23,7 +23,10 @@ function MoodCheckIn({
       {miniTitle}
       <h1 className="text-center text-3xl mb-4">How Do You Feel?</h1>
 
-      <MoodSelectionIcons onClick={onClick} />
+      <MoodSelectionIcons
+        onClick={onClick}
+        selected={selected}
+      />
 
       <Input
         name="Description"
