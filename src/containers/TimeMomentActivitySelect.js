@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ActivitySelection from '../components/ActivitySelection';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button';
