@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
+
 import BackButton from '../components/BackButton';
 import Button from '../components/Button';
 import CardFullWidth from '../components/CardFullWidth';
 import ActivityIconLabel from '../components/ActivityIconLabel';
 import MoodCheckIn from '../components/MoodCheckIn';
 
-function TimeMomentMoodSelect({ location }) {
+function TimeMomentMoodSelect() {
+  const location = useLocation();
   const { state } = location;
   const [mood, setMood] = useState(null);
   const [moodDescription, setMoodDescription] = useState('');

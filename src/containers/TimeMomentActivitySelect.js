@@ -4,16 +4,19 @@ import BackButton from '../components/BackButton';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import Input from '../components/Input';
+import Modal from '../components/Modal';
+import useModal from '../useModal';
 
 function TimeMomentActivitySelect() {
+  const { isVisible, toggleModal } = useModal();
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
 
-  function handleClick(e) {
+  function handleActivitySelection(e) {
     setCategory(e.currentTarget.dataset.category);
   }
 
-  function handleInput(e) {
+  function handleDescriptionInput(e) {
     setDescription(e.currentTarget.value);
   }
 
@@ -21,30 +24,29 @@ function TimeMomentActivitySelect() {
     return givenCategory !== '';
   }
 
-  // TODO: Create an actual way to clean description...? Or is this Rails?
-  function cleanDescriptionInput(givenDescription) {
-    setDescription(givenDescription);
+  function validateInputs() {
+    return validCategory(category);
   }
 
-  function verifyAndPassInputs(e) {
-    if (!validCategory(category)) {
+  function handleSubmission(e) {
+    const validInputs = validateInputs(e);
+    if (!validInputs) {
       e.preventDefault();
-      // TODO: Show a warning message to user
-      console.log('You have to select a thing!!!');
+      toggleModal();
     }
-    cleanDescriptionInput(description);
   }
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-yellow-50">
+
       <BackButton />
 
       <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
-
         <Card>
+
           <h1 className="text-center text-3xl">Select an Activity</h1>
           <ActivitySelection
-            onClick={(e) => handleClick(e)}
+            onClick={(e) => handleActivitySelection(e)}
             selected={category}
           />
           <div className="">
@@ -53,10 +55,11 @@ function TimeMomentActivitySelect() {
               type="text"
               required="false"
               position="singular"
-              onChange={(e) => handleInput(e)}
+              onChange={(e) => handleDescriptionInput(e)}
             />
           </div>
         </Card>
+
         <Button
           text="Next"
           linkTo={{
@@ -66,9 +69,11 @@ function TimeMomentActivitySelect() {
               description,
             },
           }}
-          onClick={(e) => verifyAndPassInputs(e)}
+          onClick={(e) => handleSubmission(e)}
         />
       </div>
+
+      <Modal isVisible={isVisible} hideModal={toggleModal} />
     </div>
   );
 }
