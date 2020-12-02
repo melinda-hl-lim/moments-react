@@ -62,6 +62,7 @@ function TimeMomentActivitySelect() {
 
         <Button
           text="Next"
+          variant="secondary"
           linkTo={{
             pathname: '/moment/new/select_mood',
             state: {
@@ -73,7 +74,11 @@ function TimeMomentActivitySelect() {
         />
       </div>
 
-      <Modal isVisible={isVisible} hideModal={toggleModal} />
+      <Modal
+        isVisible={isVisible}
+        hideModal={toggleModal}
+        text="Please select a category"
+      />
     </div>
   );
 }
