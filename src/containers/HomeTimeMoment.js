@@ -3,25 +3,14 @@ import axios from 'axios';
 import Navigation from '../components/Navigation';
 import MomentHeaderCard from '../components/MomentHeaderCard';
 import MoodCheckIn from '../components/MoodCheckIn';
+import MoodSelector from '../utils/MoodSelector';
 
 function HomeTimeMoment({ timedActivity }) {
   const [mood, setMood] = useState(null);
   const [moodDescription, setMoodDescription] = useState('');
+  const moodSelector = new MoodSelector(mood, moodDescription, setMood, setMoodDescription);
 
-  function handleClick(e) {
-    const selectedMood = e.currentTarget.dataset.mood;
-    if (mood === selectedMood) {
-      setMood(null);
-    } else {
-      setMood(selectedMood);
-    }
-  }
-
-  function handleInput(e) {
-    setMoodDescription(e.currentTarget.value);
-  }
-
-  function postNewMood(e) {
+  function postNewMood() {
     const data = {
       mood,
       moodDescription,
@@ -38,6 +27,16 @@ function HomeTimeMoment({ timedActivity }) {
         // if the post request fails, tell the user to try again later
       });
   }
+
+  function handleSubmit(e) {
+    if (!mood) {
+      e.preventDefault();
+      // TODO: pop up modal to let user know to select an icon
+    } else {
+      postNewMood();
+    }
+  }
+
   return (
     <>
       <div className="min-h-custom flex flex-col items-center justify-center bg-yellow-50 mb-16">
@@ -55,10 +54,10 @@ function HomeTimeMoment({ timedActivity }) {
           {/* card for mood check in */}
           <MoodCheckIn
             button="true"
-            onIconClick={(e) => handleClick(e)}
-            onInput={(e) => handleInput(e)}
+            onIconClick={(e) => moodSelector.handleClick(e)}
+            onInput={(e) => moodSelector.handleInput(e)}
             selected={mood}
-            onButtonClick={(e) => postNewMood(e)}
+            onButtonClick={(e) => handleSubmit(e)}
           />
 
         </div>

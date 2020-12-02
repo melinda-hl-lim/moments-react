@@ -9,26 +9,16 @@ import ActivityIconLabel from '../components/ActivityIconLabel';
 import Modal from '../components/Modal';
 import useModal from '../useModal';
 import MoodCheckIn from '../components/MoodCheckIn';
+import MoodSelector from '../utils/MoodSelector';
 
 function TimeMomentMoodSelect() {
   const location = useLocation();
   const { state } = location;
   const { isVisible, toggleModal } = useModal();
+
   const [mood, setMood] = useState(null);
   const [moodDescription, setMoodDescription] = useState('');
-
-  function handleClick(e) {
-    const selectedMood = e.currentTarget.dataset.mood;
-    if (mood === selectedMood) {
-      setMood(null);
-    } else {
-      setMood(selectedMood);
-    }
-  }
-
-  function handleInput(e) {
-    setMoodDescription(e.currentTarget.value);
-  }
+  const moodSelector = new MoodSelector(mood, moodDescription, setMood, setMoodDescription);
 
   function postNewMoment(e) {
     if (!mood) {
@@ -63,7 +53,7 @@ function TimeMomentMoodSelect() {
           <CardFullWidth>
             <h1 className="text-center text-2xl mx-4">You selected</h1>
 
-            <div className="flex flex-col justify-around items-center my-4 mx-4 max-w-md bg-white rounded-lg">
+            <div className="flex flex-col justify-around items-center my-4 mx-4">
               <ActivityIconLabel
                 label={state.category}
               />
@@ -74,8 +64,8 @@ function TimeMomentMoodSelect() {
           {/* main content area */}
           <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
             <MoodCheckIn
-              onIconClick={(e) => handleClick(e)}
-              onInput={(e) => handleInput(e)}
+              onIconClick={(e) => moodSelector.handleClick(e)}
+              onInput={(e) => moodSelector.handleInput(e)}
               selected={mood}
             />
             <Button
