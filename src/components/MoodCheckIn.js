@@ -5,7 +5,7 @@ import Input from './Input';
 import MoodSelectionIcons from './MoodSelectionIcons';
 
 function MoodCheckIn({
-  button, lastCheckIn, onClick, onInput, selected,
+  button, lastCheckIn, onIconClick, onInput, onButtonClick, selected,
 }) {
   const buttonPresent = (button === 'true');
   let finishButton;
@@ -16,6 +16,7 @@ function MoodCheckIn({
         variant="secondary"
         size="small"
         linkTo="/home_timing"
+        onClick={onButtonClick}
       />
     );
   }
@@ -31,7 +32,7 @@ function MoodCheckIn({
       <h1 className="text-center text-3xl mb-4">How Do You Feel?</h1>
 
       <MoodSelectionIcons
-        onClick={onClick}
+        onClick={onIconClick}
         selected={selected}
       />
 

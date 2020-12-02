@@ -18,7 +18,12 @@ function TimeMomentMoodSelect() {
   const [moodDescription, setMoodDescription] = useState('');
 
   function handleClick(e) {
-    setMood(e.currentTarget.dataset.mood);
+    const selectedMood = e.currentTarget.dataset.mood;
+    if (mood === selectedMood) {
+      setMood(null);
+    } else {
+      setMood(selectedMood);
+    }
   }
 
   function handleInput(e) {
@@ -69,7 +74,7 @@ function TimeMomentMoodSelect() {
           {/* main content area */}
           <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
             <MoodCheckIn
-              onClick={(e) => handleClick(e)}
+              onIconClick={(e) => handleClick(e)}
               onInput={(e) => handleInput(e)}
               selected={mood}
             />

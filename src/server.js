@@ -47,6 +47,11 @@ function makeServer({ environment = 'development' } = {}) {
         database.moment.unshift(moment);
         database.mood.unshift(mood);
       });
+
+      this.post('/mood/create', (schema, request) => {
+        const data = JSON.parse(request.requestBody);
+        console.log(data);
+      });
     },
   });
 

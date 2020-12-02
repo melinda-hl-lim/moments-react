@@ -9,6 +9,7 @@ import {
 
 function MoodSelectionIcons({ onClick, selected }) {
   const greyedIcon = 'text-gray-400';
+
   function determineIconColor(originalMoodColor, moodValue) {
     if (selected && selected === moodValue) {
       return originalMoodColor;
