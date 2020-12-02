@@ -6,11 +6,14 @@ import BackButton from '../components/BackButton';
 import Button from '../components/Button';
 import CardFullWidth from '../components/CardFullWidth';
 import ActivityIconLabel from '../components/ActivityIconLabel';
+import Modal from '../components/Modal';
+import useModal from '../useModal';
 import MoodCheckIn from '../components/MoodCheckIn';
 
 function TimeMomentMoodSelect() {
   const location = useLocation();
   const { state } = location;
+  const { isVisible, toggleModal } = useModal();
   const [mood, setMood] = useState(null);
   const [moodDescription, setMoodDescription] = useState('');
 
@@ -22,21 +25,28 @@ function TimeMomentMoodSelect() {
     setMoodDescription(e.currentTarget.value);
   }
 
-  function postNewMoment() {
-    const data = {
-      category: state.category,
-      activityDescription: state.description,
-      mood,
-      moodDescription,
-    };
+  function postNewMoment(e) {
+    if (!mood) {
+      e.preventDefault();
+      toggleModal();
+    } else {
+      const data = {
+        category: state.category,
+        activityDescription: state.description,
+        mood,
+        moodDescription,
+      };
 
-    axios.post('/moment/create', data)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((response) => {
-        console.log(response);
-      });
+      axios.post('/moment/create', data)
+        .then((response) => {
+          console.log(response);
+          // if there's a 500 error, let the user know...?
+        })
+        .catch((response) => {
+          console.log(response);
+          // if the post request fails, tell the user to try again later
+        });
+    }
   }
 
   return (
@@ -66,9 +76,14 @@ function TimeMomentMoodSelect() {
             <Button
               text="Start Activity"
               linkTo="/"
-              onClick={postNewMoment}
+              onClick={(e) => postNewMoment(e)}
             />
           </div>
+          <Modal
+            isVisible={isVisible}
+            hideModal={toggleModal}
+            text="Please select a mood"
+          />
         </div>
       )
       : <Redirect to="/" />
