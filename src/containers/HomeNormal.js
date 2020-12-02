@@ -11,24 +11,6 @@ import CardFullWidth from '../components/CardFullWidth';
 import Navigation from '../components/Navigation';
 
 function HomeNormal({ lastMood }) {
-  // Check out using date.toLocaleTimeString()
-  function timestampToReadable(timestamp) {
-    const date = new Date(timestamp);
-    let hour = date.getHours();
-    const minute = date.getMinutes();
-    let timeString;
-
-    if (hour >= 12) {
-      if (hour !== 12) { hour -= 12; }
-      timeString = `${String(hour)}:${String(minute)} PM`;
-    } else { // hour is 0-11
-      if (hour === 0) { hour = 12; }
-      timeString = `${String(hour)}:${String(minute)} AM`;
-    }
-
-    return timeString;
-  }
-
   function moodRatingToIcon(rating) {
     switch (rating) {
       case 1:
@@ -54,7 +36,7 @@ function HomeNormal({ lastMood }) {
             Last check in at:
           </h2>
           <h2 className="mt-6 text-center text-5xl leading-9 font-extrabold text-gray-900">
-            {timestampToReadable(lastMood.createdAt)}
+            {lastMood.createdAt}
           </h2>
           <h2 className="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900">
             You felt:

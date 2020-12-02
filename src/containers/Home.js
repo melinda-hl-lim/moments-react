@@ -6,6 +6,13 @@ import HomeTimeMoment from './HomeTimeMoment';
 function Home() {
   const [data, setData] = useState(null);
 
+  function timestampToReadable(timestamp) {
+    const date = new Date(timestamp);
+    const timeString = date.toLocaleTimeString()
+      .split(/[:\s]/);
+    return `${timeString[0]}:${timeString[1]} ${timeString[3]}`;
+  }
+
   function isCompleteMoment(moment) {
     return !!(moment.finishedAt);
   }
@@ -13,11 +20,12 @@ function Home() {
   useEffect(() => {
     axios.get('/most_recent_moment')
       .then((res) => {
+        res.data.moment.createdAt = timestampToReadable(res.data.moment.createdAt);
+        res.data.mood.createdAt = timestampToReadable(res.data.mood.createdAt);
         res.data.isTiming = !isCompleteMoment(res.data.moment);
         setData(res.data);
       })
       .catch((response) => {
-        // eslint-disable-next-line no-console
         console.log(response);
       });
   }, []);

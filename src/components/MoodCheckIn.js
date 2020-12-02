@@ -10,7 +10,14 @@ function MoodCheckIn({
   const buttonPresent = (button === 'true');
   let finishButton;
   if (buttonPresent) {
-    finishButton = <Button text="Check In" linkTo="/home_timing" />;
+    finishButton = (
+      <Button
+        text="Check In"
+        variant="secondary"
+        size="small"
+        linkTo="/home_timing"
+      />
+    );
   }
 
   let miniTitle;

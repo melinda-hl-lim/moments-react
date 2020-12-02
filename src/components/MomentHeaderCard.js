@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import CardFullWidth from './CardFullWidth';
 
 function MomentHeaderCard({
   activityCategory, startTime, stopTime, activityDescription, duration, button,
@@ -20,18 +21,20 @@ function MomentHeaderCard({
   }
 
   return (
-    <div className="flex flex-col w-full bg-white rounded-lg shadow-md px-4 py-8">
+    <CardFullWidth>
 
-      <h2 className="text-4xl">{activityCategory}</h2>
-      <p>{timeInfo}</p>
-      <p>{activityDescription}</p>
-
-      <div className="flex justify-center items-center">
-        <h1 className="text-5xl">{duration}</h1>
+      <div className="w-full text-left">
+        <h2 className="text-4xl">{activityCategory}</h2>
+        <p>{timeInfo}</p>
+        <p>{activityDescription}</p>
       </div>
 
-      {finishButton}
-    </div>
+      <h1 className="text-5xl mt-4">{duration}</h1>
+
+      <div className="w-full">
+        {finishButton}
+      </div>
+    </CardFullWidth>
   );
 }
 
