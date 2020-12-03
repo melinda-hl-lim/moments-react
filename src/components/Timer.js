@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Timer({ startTimestamp, reverse }) {
-  const MOOD_CHECK_IN_COUNTDOWN = 900000; // 15 minutes in milliseconds
+function Timer({ startTimestamp, reverse, countdownDuration }) {
   const [duration, setDuration] = useState(calculateDuration(startTimestamp));
 
   // Calculate the time passed between now and a given start time
@@ -10,7 +9,10 @@ function Timer({ startTimestamp, reverse }) {
     const endTime = new Date();
 
     const hours = endTime.getHours() - startTime.getHours();
-    const minutes = endTime.getMinutes() - startTime.getMinutes();
+    let minutes = endTime.getMinutes() - startTime.getMinutes();
+
+    if (minutes < 0) { minutes += 60; }
+
     return `${hours} hr ${minutes} min`;
   }
 
@@ -18,7 +20,7 @@ function Timer({ startTimestamp, reverse }) {
   function calculateDurationBackward(givenStartTime) {
     const startTime = new Date(givenStartTime);
     const currentDuration = new Date() - startTime;
-    const remainingDuration = MOOD_CHECK_IN_COUNTDOWN - currentDuration;
+    const remainingDuration = countdownDuration - currentDuration;
 
     const remainingMinutes = Math.floor(remainingDuration / 60000);
 

@@ -4,21 +4,13 @@ import CardFullWidth from './CardFullWidth';
 import Timer from './Timer';
 
 function MomentHeaderCard({
-  activityCategory, startTime, stopTime, activityDescription, timestamp, button,
+  children, activityCategory, startTime, stopTime, activityDescription, timestamp,
 }) {
   let timeInfo;
   if (stopTime) {
     timeInfo = `${startTime} to ${stopTime}`;
   } else {
     timeInfo = `Start Time: ${startTime}`;
-  }
-
-  const buttonPresent = (button === 'true');
-  let finishButton;
-  if (buttonPresent) {
-    finishButton = <Button text="Finish Activity" linkTo="/time_moment_last_mood" />;
-  } else {
-    finishButton = '';
   }
 
   return (
@@ -35,10 +27,7 @@ function MomentHeaderCard({
           startTimestamp={timestamp}
         />
       </h1>
-
-      <div className="w-full">
-        {finishButton}
-      </div>
+      {children}
     </CardFullWidth>
   );
 }

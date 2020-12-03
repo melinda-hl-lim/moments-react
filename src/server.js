@@ -32,6 +32,7 @@ function makeServer({ environment = 'development' } = {}) {
         const yyyymmdd = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
         const moment = {
+          id: 15,
           createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
           finishedAt: null,
           description: data.activityDescription,
@@ -42,6 +43,7 @@ function makeServer({ environment = 'development' } = {}) {
           createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
           rating: data.mood,
           description: data.moodDescription,
+          momentId: moment.id,
         };
 
         database.moment.unshift(moment);
@@ -51,6 +53,26 @@ function makeServer({ environment = 'development' } = {}) {
       this.post('/mood/create', (schema, request) => {
         const data = JSON.parse(request.requestBody);
         console.log(data);
+      });
+
+      this.post('/moment/finalize', (schema, request) => {
+        const data = JSON.parse(request.requestBody);
+        console.log(data);
+
+        const date = new Date();
+        const yyyymmdd = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+        const mostRecentMoment = database.moment[0];
+        mostRecentMoment.finishedAt = `${yyyymmdd} ${date.toLocaleTimeString()}`;
+
+        const mood = {
+          createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
+          rating: data.mood,
+          description: data.moodDescription,
+          momentId: mostRecentMoment.id,
+        };
+
+        database.mood.unshift(mood);
       });
     },
   });

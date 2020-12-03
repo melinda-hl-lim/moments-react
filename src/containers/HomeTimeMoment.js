@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Navigation from '../components/Navigation';
+import Button from '../components/Button';
+import Card from '../components/Card';
+import Modal from '../components/Modal';
+import useModal from '../useModal';
 import MomentHeaderCard from '../components/MomentHeaderCard';
 import MoodCheckIn from '../components/MoodCheckIn';
 import MoodSelector from '../utils/MoodSelector';
-import Card from '../components/Card';
+import Navigation from '../components/Navigation';
 import Timer from '../components/Timer';
-import useModal from '../useModal';
-import Modal from '../components/Modal';
 
 function HomeTimeMoment({ timedActivity }) {
   const MOOD_CHECK_IN_COUNTDOWN = 900000; // 15 minutes in milliseconds
@@ -16,19 +17,19 @@ function HomeTimeMoment({ timedActivity }) {
   const [moodCountdown, setMoodCountdown] = useState(false);
   const [countdownStartTime, setCountdownStartTime] = useState(new Date());
   const moodSelector = new MoodSelector(mood, moodDescription, setMood, setMoodDescription);
-  const { isVisible, toggleModal } = useModal();
+  const {
+    isVisible, toggleModal, modalText, setModalText,
+  } = useModal();
 
   function postNewMood() {
     const data = {
       mood,
       moodDescription,
+      momentId: timedActivity.id,
     };
 
     axios.post('/mood/create', data)
       .then((response) => {
-        console.log(response);
-
-        // TODO: if there's a 500 error, let the user know...?
         if (response.status === 201) {
           setMoodCountdown(true);
           setCountdownStartTime(new Date());
@@ -36,19 +37,23 @@ function HomeTimeMoment({ timedActivity }) {
             () => setMoodCountdown(null),
             MOOD_CHECK_IN_COUNTDOWN,
           );
+        } if (response.status >= 400 && response.status <= 511) {
+          setModalText(`A ${response.status} error has occured. Please check in again later.`);
+          toggleModal();
         }
       })
-      .catch((response) => {
-        console.log(response);
-        // TODO: if the post request fails, tell the user to try again later
+      .catch(() => {
+        setModalText('An error has occured. Please check in again later.');
+        toggleModal();
       });
   }
 
-  function handleSubmit(e) {
+  function handleMoodSubmit(e) {
     if (mood) {
       postNewMood();
     } else {
       e.preventDefault();
+      setModalText('Please select a mood');
       toggleModal();
     }
   }
@@ -62,8 +67,19 @@ function HomeTimeMoment({ timedActivity }) {
           startTime={timedActivity.createdAt}
           activityDescription={timedActivity.description}
           timestamp={timedActivity.timestamp}
-          button="true"
-        />
+        >
+          <div className="w-full">
+            <Button
+              text="Finish Activity"
+              linkTo={{
+                pathname: '/time_moment_last_mood',
+                state: {
+                  momentId: timedActivity.id,
+                },
+              }}
+            />
+          </div>
+        </MomentHeaderCard>
         {/* main content wrapper v */}
         <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
           {moodCountdown
@@ -87,7 +103,7 @@ function HomeTimeMoment({ timedActivity }) {
                 onIconClick={(e) => moodSelector.handleClick(e)}
                 onInput={(e) => moodSelector.handleInput(e)}
                 selected={mood}
-                onButtonClick={(e) => handleSubmit(e)}
+                onButtonClick={(e) => handleMoodSubmit(e)}
               />
             )}
         </div>
@@ -96,7 +112,7 @@ function HomeTimeMoment({ timedActivity }) {
       <Modal
         isVisible={isVisible}
         hideModal={toggleModal}
-        text="Please select a mood"
+        text={modalText}
       />
 
       <Navigation />
