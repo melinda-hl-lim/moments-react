@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 function Timer({ startTimestamp, reverse }) {
-  const MOOD_CHECK_IN_COUNTDOWN = 15; // 15 minutes
-  const [duration, setDuration] = useState('');
+  const MOOD_CHECK_IN_COUNTDOWN = 900000; // 15 minutes in milliseconds
+  const [duration, setDuration] = useState(calculateDuration(startTimestamp));
 
   // Calculate the time passed between now and a given start time
   function calculateDurationForward(givenStartTime) {
@@ -15,16 +15,19 @@ function Timer({ startTimestamp, reverse }) {
   }
 
   // Calculate the time left in a timed countdown
-  function calculateDurationBackward(givenStartTime, duration) {
+  function calculateDurationBackward(givenStartTime) {
+    const startTime = new Date(givenStartTime);
+    const currentDuration = new Date() - startTime;
+    const remainingDuration = MOOD_CHECK_IN_COUNTDOWN - currentDuration;
 
+    const remainingMinutes = Math.floor(remainingDuration / 60000);
+
+    return `${String(remainingMinutes)} min remaining`;
   }
 
   function calculateDuration(givenStartTime) {
     if (reverse) {
-      return calculateDurationBackward(
-        givenStartTime,
-        new Date().setMinutes(MOOD_CHECK_IN_COUNTDOWN),
-      );
+      return calculateDurationBackward(givenStartTime);
     }
     return calculateDurationForward(givenStartTime);
   }

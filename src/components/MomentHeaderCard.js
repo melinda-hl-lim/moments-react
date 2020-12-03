@@ -35,7 +35,6 @@ function MomentHeaderCard({
           startTimestamp={timestamp}
         />
       </h1>
-      <h1 className="text-5xl mt-4">5 hr 3 min</h1>
 
       <div className="w-full">
         {finishButton}
