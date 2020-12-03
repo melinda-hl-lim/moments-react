@@ -22,7 +22,7 @@ function Timer({ startTimestamp, reverse }) {
 
     const remainingMinutes = Math.floor(remainingDuration / 60000);
 
-    return `${String(remainingMinutes)} min remaining`;
+    return `${String(remainingMinutes)} min`;
   }
 
   function calculateDuration(givenStartTime) {

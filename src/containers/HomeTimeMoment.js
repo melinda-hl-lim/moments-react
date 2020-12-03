@@ -4,11 +4,19 @@ import Navigation from '../components/Navigation';
 import MomentHeaderCard from '../components/MomentHeaderCard';
 import MoodCheckIn from '../components/MoodCheckIn';
 import MoodSelector from '../utils/MoodSelector';
+import Card from '../components/Card';
+import Timer from '../components/Timer';
+import useModal from '../useModal';
+import Modal from '../components/Modal';
 
 function HomeTimeMoment({ timedActivity }) {
+  const MOOD_CHECK_IN_COUNTDOWN = 900000; // 15 minutes in milliseconds
   const [mood, setMood] = useState(null);
   const [moodDescription, setMoodDescription] = useState('');
+  const [moodCountdown, setMoodCountdown] = useState(false);
+  const [countdownStartTime, setCountdownStartTime] = useState(new Date());
   const moodSelector = new MoodSelector(mood, moodDescription, setMood, setMoodDescription);
+  const { isVisible, toggleModal } = useModal();
 
   function postNewMood() {
     const data = {
@@ -19,13 +27,20 @@ function HomeTimeMoment({ timedActivity }) {
     axios.post('/mood/create', data)
       .then((response) => {
         console.log(response);
+
         // TODO: if there's a 500 error, let the user know...?
-        // if it's successful (201) then switch check in modal
-        // into countdown and say thanks for checking in
+        if (response.status === 201) {
+          setMoodCountdown(true);
+          setCountdownStartTime(new Date());
+          setTimeout(
+            () => setMoodCountdown(null),
+            MOOD_CHECK_IN_COUNTDOWN,
+          );
+        }
       })
       .catch((response) => {
         console.log(response);
-        // if the post request fails, tell the user to try again later
+        // TODO: if the post request fails, tell the user to try again later
       });
   }
 
@@ -34,7 +49,7 @@ function HomeTimeMoment({ timedActivity }) {
       postNewMood();
     } else {
       e.preventDefault();
-      // TODO: pop up modal to let user know to select an icon
+      toggleModal();
     }
   }
 
@@ -51,18 +66,38 @@ function HomeTimeMoment({ timedActivity }) {
         />
         {/* main content wrapper v */}
         <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
-
-          {/* card for mood check in */}
-          <MoodCheckIn
-            button="true"
-            onIconClick={(e) => moodSelector.handleClick(e)}
-            onInput={(e) => moodSelector.handleInput(e)}
-            selected={mood}
-            onButtonClick={(e) => handleSubmit(e)}
-          />
-
+          {moodCountdown
+            ? (
+              <Card>
+                <div className="flex flex-col justify-center items-center">
+                  <p>Thank you for checking in!</p>
+                  <p className="mt-4">You can record another mood in:</p>
+                  <h2 className="text-2xl">
+                    <Timer
+                      startTimestamp={countdownStartTime}
+                      reverse
+                    />
+                  </h2>
+                </div>
+              </Card>
+            )
+            : (
+              <MoodCheckIn
+                button="true"
+                onIconClick={(e) => moodSelector.handleClick(e)}
+                onInput={(e) => moodSelector.handleInput(e)}
+                selected={mood}
+                onButtonClick={(e) => handleSubmit(e)}
+              />
+            )}
         </div>
       </div>
+
+      <Modal
+        isVisible={isVisible}
+        hideModal={toggleModal}
+        text="Please select a mood"
+      />
 
       <Navigation />
     </>
