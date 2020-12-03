@@ -21,14 +21,11 @@ function MoodCheckIn({
     );
   }
 
-  let miniTitle;
-  if (lastCheckIn) {
-    miniTitle = <h2 className="text-center mx-4">Once last check in...</h2>;
-  }
-
   return (
     <Card>
-      {miniTitle}
+      {lastCheckIn
+        ? <h2 className="text-center mx-4">Once last check in...</h2>
+        : null }
       <h1 className="text-center text-3xl mb-4">How Do You Feel?</h1>
 
       <MoodSelectionIcons
@@ -43,7 +40,8 @@ function MoodCheckIn({
         position="singular"
         onChange={onInput}
       />
-
+      {/* TODO Instead of making a finish button,
+      have this component accept children. If unclear, ask andrew :3 */}
       {finishButton}
     </Card>
   );

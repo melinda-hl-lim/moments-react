@@ -1,9 +1,10 @@
 import React from 'react';
 import Button from './Button';
 import CardFullWidth from './CardFullWidth';
+import Timer from './Timer';
 
 function MomentHeaderCard({
-  activityCategory, startTime, stopTime, activityDescription, duration, button,
+  activityCategory, startTime, stopTime, activityDescription, timestamp, button,
 }) {
   let timeInfo;
   if (stopTime) {
@@ -29,7 +30,12 @@ function MomentHeaderCard({
         <p>{activityDescription}</p>
       </div>
 
-      <h1 className="text-5xl mt-4">{duration}</h1>
+      <h1 className="text-5xl mt-4">
+        <Timer
+          startTimestamp={timestamp}
+        />
+      </h1>
+      <h1 className="text-5xl mt-4">5 hr 3 min</h1>
 
       <div className="w-full">
         {finishButton}

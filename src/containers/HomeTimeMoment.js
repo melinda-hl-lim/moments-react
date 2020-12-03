@@ -19,8 +19,9 @@ function HomeTimeMoment({ timedActivity }) {
     axios.post('/mood/create', data)
       .then((response) => {
         console.log(response);
-        // if there's a 500 error, let the user know...?
-        // if it's successful (201) then switch check in modal into countdown and say thanks for checking in
+        // TODO: if there's a 500 error, let the user know...?
+        // if it's successful (201) then switch check in modal
+        // into countdown and say thanks for checking in
       })
       .catch((response) => {
         console.log(response);
@@ -29,11 +30,11 @@ function HomeTimeMoment({ timedActivity }) {
   }
 
   function handleSubmit(e) {
-    if (!mood) {
+    if (mood) {
+      postNewMood();
+    } else {
       e.preventDefault();
       // TODO: pop up modal to let user know to select an icon
-    } else {
-      postNewMood();
     }
   }
 
@@ -45,7 +46,7 @@ function HomeTimeMoment({ timedActivity }) {
           activityCategory={timedActivity.category}
           startTime={timedActivity.createdAt}
           activityDescription={timedActivity.description}
-          duration="05 hr 54 min"
+          timestamp={timedActivity.timestamp}
           button="true"
         />
         {/* main content wrapper v */}

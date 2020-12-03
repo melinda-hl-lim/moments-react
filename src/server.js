@@ -29,17 +29,17 @@ function makeServer({ environment = 'development' } = {}) {
         const data = JSON.parse(request.requestBody);
 
         const date = new Date();
-        const yyymmdd = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+        const yyyymmdd = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
         const moment = {
-          createdAt: `${yyymmdd} ${date.toLocaleTimeString()}`,
+          createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
           finishedAt: null,
           description: data.activityDescription,
           category: data.category,
         };
 
         const mood = {
-          createdAt: `${yyymmdd} ${date.toLocaleTimeString()}`,
+          createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
           rating: data.mood,
           description: data.moodDescription,
         };
