@@ -1,48 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import DateTimeHelper from '../utils/DateTimeHelper';
 
-function Timer({ startTimestamp, reverse, countdownDuration }) {
-  const [duration, setDuration] = useState(getDuration());
-
-  // Calculate the time passed between now and a given start time
-  function calculateDurationForward() {
-    const startTime = new Date(startTimestamp);
-    const endTime = new Date();
-
-    let hours = endTime.getHours() - startTime.getHours();
-    let minutes = endTime.getMinutes() - startTime.getMinutes();
-
-    if (minutes < 0) {
-      hours -= 1;
-      minutes += 60;
-    }
-
-    return { hours, minutes };
-  }
-
-  // Calculate the time left in a timed countdown
-  function calculateDurationBackward() {
-    const startTime = new Date(startTimestamp);
-    const currentDuration = new Date() - startTime;
-    const remainingDuration = countdownDuration - currentDuration;
-
-    const remainingMinutes = Math.round(remainingDuration / 60000);
-    return { hours: 0, minutes: remainingMinutes };
-  }
+function Timer({ startTimestamp, countdown, countdownDuration }) {
+  const [duration, setDuration] = useState('Enjoy the Moment ^o^');
+  const dtHelper = new DateTimeHelper();
 
   function getDuration() {
-    let currentDuration;
-    if (reverse) {
-      currentDuration = calculateDurationBackward();
-      return `${String(currentDuration.minutes)} min`;
+    if (countdown) {
+      const { minutes } = dtHelper.calculateRemainingCountdown(startTimestamp, countdownDuration);
+      return `${String(minutes)} min`;
     }
-    currentDuration = calculateDurationForward();
-    return `${currentDuration.hours} hr ${currentDuration.minutes} min`;
+
+    const now = new Date();
+    const { hours, minutes } = dtHelper.calculateDurationBetween(startTimestamp, now);
+    return `${hours} hr ${minutes} min`;
   }
 
   useEffect(() => {
     const timerId = setInterval(() => {
       const currentDuration = getDuration();
-      if (currentDuration !== duration) { setDuration(currentDuration); }
+
+      if (currentDuration !== duration) {
+        setDuration(currentDuration);
+      }
     }, 5000);
 
     return () => clearInterval(timerId);

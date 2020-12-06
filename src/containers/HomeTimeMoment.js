@@ -95,7 +95,7 @@ function HomeTimeMoment({ timedActivity }) {
                   <h2 className="text-2xl">
                     <Timer
                       startTimestamp={countdownStartTime}
-                      reverse
+                      countdown
                       countdownDuration={MOOD_CHECK_IN_COUNTDOWN}
                     />
                   </h2>
