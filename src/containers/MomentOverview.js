@@ -5,29 +5,27 @@ import {
   RiEmotionSadLine,
 } from 'react-icons/ri';
 import Button from '../components/Button';
-import Input from '../components/Input';
+import MomentHeaderCard from '../components/MomentHeaderCard';
 
 function MomentOverview() {
   return (
 
-    <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-yellow-50">
 
-      <div className="max-w-md px-4 py-8 w-full bg-white rounded-lg shadow-md">
-        <h2 className="text-4xl">Family</h2>
-        <p>3:15 PM to 9:15 PM</p>
-        <p>Spend some time with the fam bam for the holidays</p>
+      <MomentHeaderCard
+        activityCategory="Family"
+        startTime="3:15 PM"
+        stopTime="9:15 PM"
+        duration="06 hr 00 min"
+        activityDescription="Spend some time with the fam bam for the holidays"
+      />
 
-        <div className="flex justify-center items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-          <h1 className="text-5xl">06 hr 00 min</h1>
-        </div>
+      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
 
-      </div>
+        <div className="max-w-md w-full bg-white rounded-lg shadow-md px-4 py-8">
+          <h1 className="text-center text-3xl">You felt:</h1>
 
-      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-md mt-8">
-          <h1 className="text-center text-4xl mt-8 mx-4">You felt:</h1>
-
-          <ul className="my-8 mx-4 max-w-md bg-white rounded-lg">
+          <ul className="mt-6 max-w-md">
 
             <li className="flex text-4xl my-2">
               <RiEmotionSadLine />
@@ -51,18 +49,9 @@ function MomentOverview() {
               </div>
             </li>
           </ul>
-
-          <div className="mx-4 mb-8">
-            <Input
-              name="Description"
-              type="text"
-              required="false"
-              position="singular"
-            />
-          </div>
         </div>
 
-        <Button text="Finish" linkTo="/home" />
+        <Button text="Finish" linkTo="/" />
       </div>
     </div>
 

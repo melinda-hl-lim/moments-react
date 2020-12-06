@@ -1,59 +1,132 @@
-import React from 'react';
-import {
-  RiEmotionUnhappyLine,
-  RiEmotionNormalLine,
-  RiEmotionLaughLine,
-  RiEmotionHappyLine,
-  RiEmotionSadLine,
-} from 'react-icons/ri';
+import React, { useState } from 'react';
+import axios from 'axios';
+import DateTimeHelper from '../utils/DateTimeHelper';
 import Button from '../components/Button';
-import Input from '../components/Input';
+import Card from '../components/Card';
+import Modal from '../components/Modal';
+import useModal from '../useModal';
+import MomentHeaderCard from '../components/MomentHeaderCard';
+import MoodCheckIn from '../components/MoodCheckIn';
+import MoodSelector from '../utils/MoodSelector';
 import Navigation from '../components/Navigation';
+import Timer from '../components/Timer';
 
-function HomeTimeMoment() {
+function HomeTimeMoment({ timedActivity }) {
+  const dtHelper = new DateTimeHelper();
+  const activityStartTime = dtHelper.timestampToReadable(timedActivity.createdAt);
+  const MOOD_CHECK_IN_COUNTDOWN = 900000; // 15 minutes in milliseconds
+  const [mood, setMood] = useState(null);
+  const [moodDescription, setMoodDescription] = useState('');
+  const [moodCountdown, setMoodCountdown] = useState(false);
+  const [countdownStartTime, setCountdownStartTime] = useState(new Date());
+  const moodSelector = new MoodSelector(mood, moodDescription, setMood, setMoodDescription);
+  const {
+    isVisible, toggleModal, modalText, setModalText,
+  } = useModal();
+
+  function postNewMood() {
+    const data = {
+      mood,
+      moodDescription,
+      momentId: timedActivity.id,
+    };
+
+    axios.post('/mood/create', data)
+      .then((response) => {
+        if (response.status === 201) {
+          setMoodCountdown(true);
+          setCountdownStartTime(new Date());
+          setTimeout(
+            () => {
+              // TODO: pull into function for resetMood ...?
+              setMoodCountdown(null);
+              setMood(null);
+            },
+            MOOD_CHECK_IN_COUNTDOWN,
+          );
+        } if (response.status >= 400 && response.status <= 511) {
+          setModalText(`A ${response.status} error has occured. Please check in again later.`);
+          toggleModal();
+        }
+      })
+      .catch(() => {
+        setModalText('An error has occured. Please check in again later.');
+        toggleModal();
+      });
+  }
+
+  function handleMoodSubmit(e) {
+    if (mood) {
+      postNewMood();
+    } else {
+      e.preventDefault();
+      setModalText('Please select a mood');
+      toggleModal();
+    }
+  }
+
   return (
     <>
-      <div className="min-h-custom flex flex-col items-center justify-center bg-orange-100 mb-16">
+      <div className="min-h-custom flex flex-col items-center justify-center bg-yellow-50 mb-16">
 
-        <div className="max-w-md px-4 py-8 w-full bg-white rounded-lg shadow-md">
-          <h2 className="text-4xl">Family</h2>
-          <p>Start Time: 3:15 PM</p>
-          <p>Spend some time with the fam bam for the holidays</p>
-
-          <div className="flex justify-center items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-            <h1 className="text-5xl">05 hr 54 min</h1>
+        <MomentHeaderCard
+          activityCategory={timedActivity.category}
+          startTime={activityStartTime}
+          activityDescription={timedActivity.description}
+          timestamp={timedActivity.createdAt}
+        >
+          <div className="w-full">
+            <Button
+              text="Finish Activity"
+              linkTo={{
+                pathname: '/time_moment_last_mood',
+                state: {
+                  momentId: timedActivity.id,
+                },
+              }}
+            />
           </div>
-
-          <Button text="Finish Activity" linkTo="/time_moment_last_mood" />
-        </div>
-
-        <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-md mt-8">
-            <h1 className="text-center text-3xl mt-8 mx-4">How Do You Feel?</h1>
-
-            <div className="flex justify-around items-center my-8 mx-4 max-w-md bg-white rounded-lg">
-
-              <span className="text-4xl m-0"><RiEmotionSadLine /></span>
-              <span className="text-4xl m-0"><RiEmotionUnhappyLine /></span>
-              <span className="text-4xl m-0"><RiEmotionNormalLine /></span>
-              <span className="text-4xl m-0"><RiEmotionHappyLine /></span>
-              <span className="text-4xl m-0"><RiEmotionLaughLine /></span>
-
-            </div>
-
-            <div className="mx-4 mb-8">
-              <Input
-                name="Description"
-                type="text"
-                required="false"
-                position="singular"
-              />
-            </div>
-          </div>
-
-          <Button text="Check In" />
+        </MomentHeaderCard>
+        {/* main content wrapper v */}
+        <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
+          {moodCountdown
+            ? (
+              <Card>
+                <div className="flex flex-col justify-center items-center">
+                  <p>Thank you for checking in!</p>
+                  <p className="mt-4">You can record another mood in:</p>
+                  <h2 className="text-2xl">
+                    <Timer
+                      startTimestamp={countdownStartTime}
+                      countdown
+                      countdownDuration={MOOD_CHECK_IN_COUNTDOWN}
+                    />
+                  </h2>
+                </div>
+              </Card>
+            )
+            : (
+              <MoodCheckIn
+                onIconClick={(e) => moodSelector.handleClick(e)}
+                onInput={(e) => moodSelector.handleInput(e)}
+                selected={mood}
+              >
+                <Button
+                  text="Check In"
+                  variant="secondary"
+                  size="small"
+                  onClick={(e) => handleMoodSubmit(e)}
+                />
+              </MoodCheckIn>
+            )}
         </div>
       </div>
+
+      <Modal
+        isVisible={isVisible}
+        hideModal={toggleModal}
+        text={modalText}
+      />
 
       <Navigation />
     </>

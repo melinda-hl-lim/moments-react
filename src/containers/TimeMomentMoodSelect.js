@@ -1,61 +1,87 @@
-import React from 'react';
-import {
-  RiHomeHeartFill,
-  RiEmotionUnhappyLine,
-  RiEmotionNormalLine,
-  RiEmotionLaughLine,
-  RiEmotionHappyLine,
-  RiEmotionSadLine,
-} from 'react-icons/ri';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useLocation, Redirect } from 'react-router-dom';
+
+import BackButton from '../components/BackButton';
 import Button from '../components/Button';
-import Input from '../components/Input';
+import CardFullWidth from '../components/CardFullWidth';
+import ActivityIconLabel from '../components/ActivityIconLabel';
+import Modal from '../components/Modal';
+import useModal from '../useModal';
+import MoodCheckIn from '../components/MoodCheckIn';
+import MoodSelector from '../utils/MoodSelector';
 
 function TimeMomentMoodSelect() {
+  const location = useLocation();
+  const { state } = location;
+  const { isVisible, toggleModal } = useModal();
+
+  const [mood, setMood] = useState(null);
+  const [moodDescription, setMoodDescription] = useState('');
+  const moodSelector = new MoodSelector(mood, moodDescription, setMood, setMoodDescription);
+
+  function postNewMoment(e) {
+    if (!mood) {
+      e.preventDefault();
+      toggleModal();
+    } else {
+      const data = {
+        category: state.category,
+        activityDescription: state.description,
+        mood,
+        moodDescription,
+      };
+
+      axios.post('/moment/create', data)
+        .then((response) => {
+          console.log(response);
+          // if there's a 500 error, let the user know...?
+        })
+        .catch((response) => {
+          console.log(response);
+          // if the post request fails, tell the user to try again later
+        });
+    }
+  }
+
   return (
-    <div className="min-h-screen flex flex-col items-center bg-orange-100">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md">
-        <h1 className="text-center text-2xl mt-8 mx-4">You selected</h1>
+    state
+      ? (
+        <div className="min-h-screen flex flex-col items-center bg-yellow-50">
+          <BackButton />
 
-        <div className="flex justify-around items-center my-4 mx-4 max-w-md bg-white rounded-lg">
-          <div className="flex flex-col items-center">
-            <span className="text-3xl m-0"><RiHomeHeartFill /></span>
-            <p className="-mt-px">Family</p>
-          </div>
-        </div>
+          <CardFullWidth>
+            <h1 className="text-center text-2xl mx-4">You selected</h1>
 
-        <div className="mx-4 mb-8">
-          <p>Spend some time with the fam bam for the holidays</p>
-        </div>
-      </div>
+            <div className="flex flex-col justify-around items-center my-4 mx-4">
+              <ActivityIconLabel
+                label={state.category}
+              />
+              <p className="mt-4">{state.description}</p>
+            </div>
+          </CardFullWidth>
 
-      <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-md mt-8">
-          <h1 className="text-center text-3xl mt-8 mx-4">How Do You Feel?</h1>
-
-          <div className="flex justify-around items-center my-8 mx-4 max-w-md bg-white rounded-lg">
-
-            <span className="text-4xl m-0"><RiEmotionSadLine /></span>
-            <span className="text-4xl m-0"><RiEmotionUnhappyLine /></span>
-            <span className="text-4xl m-0"><RiEmotionNormalLine /></span>
-            <span className="text-4xl m-0"><RiEmotionHappyLine /></span>
-            <span className="text-4xl m-0"><RiEmotionLaughLine /></span>
-
-          </div>
-
-          <div className="mx-4 mb-8">
-            <Input
-              name="Description"
-              type="text"
-              required="false"
-              position="singular"
+          {/* main content area */}
+          <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 py-8">
+            <MoodCheckIn
+              onIconClick={(e) => moodSelector.handleClick(e)}
+              onInput={(e) => moodSelector.handleInput(e)}
+              selected={mood}
+            />
+            <Button
+              text="Start Activity"
+              linkTo="/"
+              onClick={(e) => postNewMoment(e)}
             />
           </div>
+          <Modal
+            isVisible={isVisible}
+            hideModal={toggleModal}
+            text="Please select a mood"
+          />
         </div>
-
-        <Button text="Start Activity" linkTo="/home_timing" />
-      </div>
-    </div>
-
+      )
+      : <Redirect to="/" />
   );
 }
 
