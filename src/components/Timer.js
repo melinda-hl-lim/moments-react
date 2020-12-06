@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DateTimeHelper from '../utils/DateTimeHelper';
 
 function Timer({ startTimestamp, countdown, countdownDuration }) {
-  const [duration, setDuration] = useState('Enjoy the Moment ^o^');
   const dtHelper = new DateTimeHelper();
+  const [duration, setDuration] = useState(getDuration());
 
   function getDuration() {
     if (countdown) {

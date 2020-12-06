@@ -44,12 +44,22 @@ export default class DateTimeHelper {
     };
   }
 
-  // Given a timestamp of format YYYY-MM-DD HH:MM:SS get the time in format HH:MM AM/PM
+  // Given a timestamp of format YYYY-MM-DD HH:MM:SS, return the time in format HH:MM AM/PM
   timestampToReadable(timestamp) {
+    const date = new Date(timestamp);
+    const timeString = date.toLocaleTimeString()
+      .split(/[:\s]/);
 
+    return `${timeString[0]}:${timeString[1]} ${timeString[3]}`;
   }
 
-  // Given a ___ of format __ get the duration in HH hr MM min format
-
   // Create a timestamp given a date object (used in server.js)
+  dateToTimestamp(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const time = date.toLocaleTimeString();
+
+    return `${year}-${month}-${day} ${time}`;
+  }
 }

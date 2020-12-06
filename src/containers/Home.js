@@ -20,11 +20,8 @@ function Home() {
   useEffect(() => {
     axios.get('/most_recent_moment')
       .then((res) => {
-        res.data.moment.timestamp = res.data.moment.createdAt;
-        res.data.moment.createdAt = timestampToReadable(res.data.moment.createdAt);
-        res.data.mood.timestamp = res.data.mood.createdAt;
-        res.data.mood.createdAt = timestampToReadable(res.data.mood.createdAt);
         res.data.isTiming = !isCompleteMoment(res.data.moment);
+
         setData(res.data);
       })
       .catch((response) => {

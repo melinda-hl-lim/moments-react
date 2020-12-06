@@ -1,7 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer } from 'miragejs';
+import DateTimeHelper from './utils/DateTimeHelper';
 
 function makeServer({ environment = 'development' } = {}) {
+  const dtHelper = new DateTimeHelper();
   const database = {
     moment: [{
       createdAt: '2020-06-22 15:15:25',
@@ -27,20 +29,19 @@ function makeServer({ environment = 'development' } = {}) {
 
       this.post('/moment/create', (schema, request) => {
         const data = JSON.parse(request.requestBody);
-
-        const date = new Date();
-        const yyyymmdd = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+        let now = new Date();
+        now = dtHelper.dateToTimestamp(now);
 
         const moment = {
           id: 15,
-          createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
+          createdAt: now,
           finishedAt: null,
           description: data.activityDescription,
           category: data.category,
         };
 
         const mood = {
-          createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
+          createdAt: now,
           rating: data.mood,
           description: data.moodDescription,
           momentId: moment.id,
@@ -59,14 +60,14 @@ function makeServer({ environment = 'development' } = {}) {
         const data = JSON.parse(request.requestBody);
         console.log(data);
 
-        const date = new Date();
-        const yyyymmdd = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+        let now = new Date();
+        now = dtHelper.dateToTimestamp(now);
 
         const mostRecentMoment = database.moment[0];
-        mostRecentMoment.finishedAt = `${yyyymmdd} ${date.toLocaleTimeString()}`;
+        mostRecentMoment.finishedAt = now;
 
         const mood = {
-          createdAt: `${yyyymmdd} ${date.toLocaleTimeString()}`,
+          createdAt: now,
           rating: data.mood,
           description: data.moodDescription,
           momentId: mostRecentMoment.id,

@@ -6,11 +6,15 @@ import {
   RiEmotionHappyLine,
   RiEmotionSadLine,
 } from 'react-icons/ri';
+import DateTimeHelper from '../utils/DateTimeHelper';
 import Button from '../components/Button';
 import CardFullWidth from '../components/CardFullWidth';
 import Navigation from '../components/Navigation';
 
 function HomeNormal({ lastMood }) {
+  const dtHelper = new DateTimeHelper();
+  const lastMoodTime = dtHelper.timestampToReadable(lastMood.createdAt);
+
   function moodRatingToIcon(rating) {
     switch (rating) {
       case 1:
@@ -36,7 +40,7 @@ function HomeNormal({ lastMood }) {
             Last check in at:
           </h2>
           <h2 className="mt-6 text-center text-5xl leading-9 font-extrabold text-gray-900">
-            {lastMood.createdAt}
+            {lastMoodTime}
           </h2>
           <h2 className="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900">
             You felt:

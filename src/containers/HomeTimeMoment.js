@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import DateTimeHelper from '../utils/DateTimeHelper';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import Modal from '../components/Modal';
@@ -11,6 +12,8 @@ import Navigation from '../components/Navigation';
 import Timer from '../components/Timer';
 
 function HomeTimeMoment({ timedActivity }) {
+  const dtHelper = new DateTimeHelper();
+  const activityStartTime = dtHelper.timestampToReadable(timedActivity.createdAt);
   const MOOD_CHECK_IN_COUNTDOWN = 900000; // 15 minutes in milliseconds
   const [mood, setMood] = useState(null);
   const [moodDescription, setMoodDescription] = useState('');
@@ -68,9 +71,9 @@ function HomeTimeMoment({ timedActivity }) {
 
         <MomentHeaderCard
           activityCategory={timedActivity.category}
-          startTime={timedActivity.createdAt}
+          startTime={activityStartTime}
           activityDescription={timedActivity.description}
-          timestamp={timedActivity.timestamp}
+          timestamp={timedActivity.createdAt}
         >
           <div className="w-full">
             <Button
