@@ -34,7 +34,11 @@ function HomeTimeMoment({ timedActivity }) {
           setMoodCountdown(true);
           setCountdownStartTime(new Date());
           setTimeout(
-            () => setMoodCountdown(null),
+            () => {
+              // TODO: pull into function for resetMood ...?
+              setMoodCountdown(null);
+              setMood(null);
+            },
             MOOD_CHECK_IN_COUNTDOWN,
           );
         } if (response.status >= 400 && response.status <= 511) {
@@ -108,7 +112,6 @@ function HomeTimeMoment({ timedActivity }) {
                   text="Check In"
                   variant="secondary"
                   size="small"
-                  linkTo="/home_timing"
                   onClick={(e) => handleMoodSubmit(e)}
                 />
               </MoodCheckIn>

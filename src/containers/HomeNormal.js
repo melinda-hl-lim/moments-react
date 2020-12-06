@@ -48,7 +48,7 @@ function HomeNormal({ lastMood }) {
 
         <div className="flex flex-col max-w-md w-full flex-grow justify-center px-4 sm:px-6 lg:px-8">
           <div className="w-full text-center rounded-lg">
-            <Button text="Record a Mood" linkTo="/building" />
+            <Button text="Record a Mood" />
           </div>
           <div className="w-full text-center rounded-lg">
             <Button text="Time an Activity" linkTo="/moment/new/select_activity" />
