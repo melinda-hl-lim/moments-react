@@ -1,26 +1,11 @@
 import React from 'react';
-import Button from './Button';
 import Card from './Card';
 import Input from './Input';
 import MoodSelectionIcons from './MoodSelectionIcons';
 
 function MoodCheckIn({
-  button, lastCheckIn, onIconClick, onInput, onButtonClick, selected,
+  children, lastCheckIn, onIconClick, onInput, selected,
 }) {
-  const buttonPresent = (button === 'true');
-  let finishButton;
-  if (buttonPresent) {
-    finishButton = (
-      <Button
-        text="Check In"
-        variant="secondary"
-        size="small"
-        linkTo="/home_timing"
-        onClick={onButtonClick}
-      />
-    );
-  }
-
   return (
     <Card>
       {lastCheckIn
@@ -40,9 +25,8 @@ function MoodCheckIn({
         position="singular"
         onChange={onInput}
       />
-      {/* TODO Instead of making a finish button,
-      have this component accept children. If unclear, ask andrew :3 */}
-      {finishButton}
+
+      {children}
     </Card>
   );
 }

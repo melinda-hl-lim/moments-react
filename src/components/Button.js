@@ -24,7 +24,7 @@ function Button({
 
   const button = (
     <button
-      type="submit"
+      type="button"
       className={classes}
       onClick={onClick}
     >

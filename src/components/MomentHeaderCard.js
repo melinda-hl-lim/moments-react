@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from './Button';
 import CardFullWidth from './CardFullWidth';
 import Timer from './Timer';
 

@@ -1,42 +1,47 @@
 import React, { useState, useEffect } from 'react';
 
 function Timer({ startTimestamp, reverse, countdownDuration }) {
-  const [duration, setDuration] = useState(calculateDuration(startTimestamp));
+  const [duration, setDuration] = useState(getDuration());
 
   // Calculate the time passed between now and a given start time
-  function calculateDurationForward(givenStartTime) {
-    const startTime = new Date(givenStartTime);
+  function calculateDurationForward() {
+    const startTime = new Date(startTimestamp);
     const endTime = new Date();
 
-    const hours = endTime.getHours() - startTime.getHours();
+    let hours = endTime.getHours() - startTime.getHours();
     let minutes = endTime.getMinutes() - startTime.getMinutes();
 
-    if (minutes < 0) { minutes += 60; }
+    if (minutes < 0) {
+      hours -= 1;
+      minutes += 60;
+    }
 
-    return `${hours} hr ${minutes} min`;
+    return { hours, minutes };
   }
 
   // Calculate the time left in a timed countdown
-  function calculateDurationBackward(givenStartTime) {
-    const startTime = new Date(givenStartTime);
+  function calculateDurationBackward() {
+    const startTime = new Date(startTimestamp);
     const currentDuration = new Date() - startTime;
     const remainingDuration = countdownDuration - currentDuration;
 
-    const remainingMinutes = Math.floor(remainingDuration / 60000);
-
-    return `${String(remainingMinutes)} min`;
+    const remainingMinutes = Math.round(remainingDuration / 60000);
+    return { hours: 0, minutes: remainingMinutes };
   }
 
-  function calculateDuration(givenStartTime) {
+  function getDuration() {
+    let currentDuration;
     if (reverse) {
-      return calculateDurationBackward(givenStartTime);
+      currentDuration = calculateDurationBackward();
+      return `${String(currentDuration.minutes)} min`;
     }
-    return calculateDurationForward(givenStartTime);
+    currentDuration = calculateDurationForward();
+    return `${currentDuration.hours} hr ${currentDuration.minutes} min`;
   }
 
   useEffect(() => {
     const timerId = setInterval(() => {
-      const currentDuration = calculateDuration(startTimestamp);
+      const currentDuration = getDuration();
       if (currentDuration !== duration) { setDuration(currentDuration); }
     }, 5000);
 

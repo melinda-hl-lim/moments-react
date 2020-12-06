@@ -3,7 +3,7 @@ import ActivityIconLabel from './ActivityIconLabel';
 
 function ActivitySelection({ onClick, selected }) {
   return (
-    <div className="flex justify-around items-center my-6 max-w-md w-full bg-white">
+    <div className="flex justify-around items-center my-6 max-w-md w-full">
 
       <div className="flex flex-col items-center">
         <ActivityIconLabel

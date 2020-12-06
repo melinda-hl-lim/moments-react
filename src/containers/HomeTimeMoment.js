@@ -92,6 +92,7 @@ function HomeTimeMoment({ timedActivity }) {
                     <Timer
                       startTimestamp={countdownStartTime}
                       reverse
+                      countdownDuration={MOOD_CHECK_IN_COUNTDOWN}
                     />
                   </h2>
                 </div>
@@ -99,12 +100,18 @@ function HomeTimeMoment({ timedActivity }) {
             )
             : (
               <MoodCheckIn
-                button="true"
                 onIconClick={(e) => moodSelector.handleClick(e)}
                 onInput={(e) => moodSelector.handleInput(e)}
                 selected={mood}
-                onButtonClick={(e) => handleMoodSubmit(e)}
-              />
+              >
+                <Button
+                  text="Check In"
+                  variant="secondary"
+                  size="small"
+                  linkTo="/home_timing"
+                  onClick={(e) => handleMoodSubmit(e)}
+                />
+              </MoodCheckIn>
             )}
         </div>
       </div>

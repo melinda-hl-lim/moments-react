@@ -8,7 +8,9 @@ import Modal from '../components/Modal';
 import useModal from '../useModal';
 
 function TimeMomentActivitySelect() {
-  const { isVisible, toggleModal } = useModal();
+  const {
+    isVisible, toggleModal, modalText, setModalText,
+  } = useModal();
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
 
@@ -20,18 +22,14 @@ function TimeMomentActivitySelect() {
     setDescription(e.currentTarget.value);
   }
 
-  function validCategory(givenCategory) {
-    return givenCategory !== '';
-  }
-
-  function validateInputs() {
-    return validCategory(category);
+  function validCategory() {
+    return category !== '';
   }
 
   function handleSubmission(e) {
-    const validInputs = validateInputs(e);
-    if (!validInputs) {
+    if (!validCategory()) {
       e.preventDefault();
+      setModalText('Please select a category');
       toggleModal();
     }
   }
@@ -77,7 +75,7 @@ function TimeMomentActivitySelect() {
       <Modal
         isVisible={isVisible}
         hideModal={toggleModal}
-        text="Please select a category"
+        text={modalText}
       />
     </div>
   );
